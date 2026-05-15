@@ -113,7 +113,7 @@ The SDK is one of four independent build domains in the SuiPump monorepo:
 
 ```
 suipump/
-├── contracts/    ← Move smart contracts (7 modules)
+├── contracts/    ← Move smart contracts (13 modules)
 ├── backend/      ← Node.js API + indexer + PTB builder
 ├── frontend/     ← Next.js dApp (not needed for SDK usage)
 └── sdk/ ← you are here

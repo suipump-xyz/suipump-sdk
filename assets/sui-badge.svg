@@ -1,7 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="24" viewBox="0 0 120 24">
-  <rect x="0" y="0" width="120" height="24" rx="4" fill="#1e293b"/>
-  <rect x="0" y="0" width="50" height="24" rx="4" fill="#64748b"/>
-  <text x="25" y="15" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="sans-serif">network</text>
-  <rect x="50" y="0" width="70" height="24" rx="4" fill="#0891b2"/>
-  <text x="85" y="15" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">testnet</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="34" viewBox="0 0 160 34">
+  <defs>
+    <linearGradient id="sui" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="160" height="34" rx="4" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1.5"/>
+  <rect x="0" y="0" width="160" height="34" rx="4" fill="url(#glow)"/>
+  <rect x="0" y="0" width="80" height="34" fill="#7c3aed" rx="0"/>
+  <rect x="0" y="0" width="80" height="34" rx="4" fill="url(#sui)"/>
+  <rect x="74" y="0" width="6" height="34" fill="#7c3aed"/>
+  <polygon points="74,0 80,17 74,34" fill="#7c3aed"/>
+  <text x="40" y="20" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="'Segoe UI', sans-serif" letter-spacing="1">SUIPUMP</text>
+  <text x="123" y="20" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="600" font-family="'Segoe UI', sans-serif">sdk</text>
 </svg>

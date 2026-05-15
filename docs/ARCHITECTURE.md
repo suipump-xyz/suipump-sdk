@@ -43,7 +43,7 @@
 
 ### Sui-Native Architecture Audit (Grade: A+)
 
-All 7 Move modules follow Sui best practices:
+All 13 Move modules follow Sui best practices:
 
 | Pattern | Implementation | Grade |
 |---------|---------------|-------|
@@ -114,11 +114,11 @@ await client.suins.getNameRecord('name.sui');
 ```
 BondingCurve<T> (shared object, one per token)
 ├── id: UID
-├── virtual_sui_reserves: u64    (MIST, set at init: 30_000_000_000)
+├── virtual_sui_reserves: u64    (MIST, dynamic — $480 USD converted at current SUI price)
 ├── virtual_token_reserves: u64  (raw units, set at init: 1_073_000_191_000_000_000)
 ├── real_sui_reserves: u64       (MIST, accumulates with buys)
 ├── real_token_reserves: u64     (raw units, decreases with buys)
-├── graduation_threshold: u64    (MIST, 4_200_000_000_000 = 4200 SUI)
+├── graduation_threshold: u64    (MIST, dynamic — $65,000 USD converted at current SUI price)
 ├── total_supply: u64            (1_000_000_000_000_000_000 = 1B × 10^9)
 ├── treasury_cap: TreasuryCap<T> (LOCKED HERE — mints and burns flow through here)
 ├── platform_fee_bps: u64        (80 = 0.80%)
