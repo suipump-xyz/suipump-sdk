@@ -41,7 +41,8 @@
     "dev": "tsc --watch",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src tests --ext .ts"
+    "lint": "eslint src tests --ext .ts",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@mysten/sui": "^2.8.0"

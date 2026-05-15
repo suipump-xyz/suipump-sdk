@@ -10,8 +10,9 @@
 
 **TypeScript SDK for the SuiPump Token Lifecycle Operating System**
 
-[![npm](https://img.shields.io/npm/v/@suipump/sdk?style=flat&logo=npm&label=version&color=10B981)](https://www.npmjs.com/package/@suipump/sdk)
+[![version](https://img.shields.io/badge/version-0.1.0--preview-10B981?style=flat&logo=typescript)](https://github.com/suipump-xyz/suipump-sdk/releases)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-10B981?style=flat&logo=typescript)](https://www.typescriptlang.org)
+[![CI](https://img.shields.io/github/actions/workflow/status/suipump-xyz/suipump-sdk/ci.yml?style=flat&logo=github&label=tests&color=10B981)](https://github.com/suipump-xyz/suipump-sdk/actions)
 [![Sui](https://img.shields.io/badge/Sui-10B981?style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ3NzE1IDIgMiA2LjQ3NzE1IDIgMTJDMiAxNy41MjIzIDYuNDc3MTUgMjIgMTIgMjJDMTcuNTIyOCAyMiAyMiAxNy41MjIzIDIyIDEyQzIyIDYuNDc3MTUgMTcuNTIyOCAyIDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==)](https://sui.io)
 [![coverage](assets/coverage-badge.svg)](https://github.com/suipump-xyz/suipump-sdk/actions)
 [![License](https://img.shields.io/badge/license-MIT-10B981?style=flat)](LICENSE)
@@ -142,9 +143,13 @@ This architecture means SuiPump can never move your funds. Even if the backend i
 
 ## 📦 Installation
 
-```bash
-npm install @suipump/sdk
-```
+> **⚠️ Not yet published to npm** — install directly from GitHub:
+>
+> ```bash
+> npm install github:suipump-xyz/suipump-sdk
+> ```
+>
+> npm publishing will be enabled at mainnet launch.
 
 **📎 Peer dependency** (required):
 
@@ -245,7 +250,7 @@ The SDK wraps the Backend REST API and the Sui blockchain interface. It requires
 
 </div>
 
-**Network:** `testnet` · **Deployed:** `2026-05-14` · **Move Tests:** `75/75 pass, zero warnings`
+**Network:** `testnet` · **Deployed:** `2026-05-14` · **Move Tests:** `75/75 pass, zero warnings` · **SDK Tests:** `186/186 pass, 100% statement coverage`
 
 > 🔍 View on [Sui Explorer (Testnet)](https://testnet.suiscan.xyz/object/0x1a6046b029116bb4c8bf1b3f218ced1ffefd50422ef29c1cd4dab9d65ff46f17)
 
@@ -707,8 +712,8 @@ import type {
 |---------|-------|--------|
 | **v0.1** 🚀 | SDK Preview — OTW creation, PTB builder, streams, Walrus, portfolio API | ✅ Live |
 | **v0.2** 🖥️ | Public Launchpad UI — discovery page, token chart, buy/sell widgets | 🔄 In progress |
-| **v0.3** 🤖 | Agent Automation — batch buy, copy-trade, webhook infrastructure | 📅 Planned |
-| **v0.4** ⭐ | Reputation Layer — on-chain creator scoring, analytics, leaderboards | 📅 Planned |
+| **v0.3** 🤖 | Agent Automation — batch buy, copy-trade, webhook infrastructure | ✅ Live |
+| **v0.4** ⭐ | Reputation Layer — on-chain creator scoring, analytics, leaderboards | ✅ Live |
 | **v1.0** ✅ | Mainnet Production — audited contracts, mainnet deploy, API GA | 📅 Q3 2026 |
 
 ---
