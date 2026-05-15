@@ -11,20 +11,9 @@
   </defs>
   <style>
     <![CDATA[
-    @keyframes fadeIn { 0%{opacity:0;transform:translateY(4)} 100%{opacity:1;transform:translateY(0)} }
-    @keyframes rowGlow { 0%,100%{opacity:.02} 50%{opacity:.06} }
-    .r1{animation:fadeIn .3s ease-out forwards}
-    .r2{animation:fadeIn .3s ease-out .1s forwards;opacity:0}
-    .r3{animation:fadeIn .3s ease-out .2s forwards;opacity:0}
-    .r4{animation:fadeIn .3s ease-out .3s forwards;opacity:0}
-    .r5{animation:fadeIn .3s ease-out .4s forwards;opacity:0}
-    .r6{animation:fadeIn .3s ease-out .5s forwards;opacity:0}
-    .r7{animation:fadeIn .3s ease-out .6s forwards;opacity:0}
-    .r8{animation:fadeIn .3s ease-out .7s forwards;opacity:0}
-    .r9{animation:fadeIn .3s ease-out .8s forwards;opacity:0}
     .row-highlight{animation:rowGlow 3s ease-in-out infinite}
     .cell{transition:all .15s}
-    .cell:hover{filter:brightness(1.4)}
+    @keyframes rowGlow{0%,100%{opacity:.04}50%{opacity:.1}}
     ]]>
   </style>
 
@@ -39,163 +28,131 @@
   <g transform="translate(40, 68)">
     <rect x="0" y="0" width="220" height="36" rx="6" fill="#0A1A10" stroke="#10B981" stroke-width="1"/>
     <text x="110" y="24" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#10B981">Feature</text>
-
     <rect x="230" y="0" width="210" height="36" rx="6" fill="#0A1A10" stroke="#10B981" stroke-width="1"/>
     <text x="335" y="24" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#10B981">✅ SuiPump</text>
-
     <rect x="450" y="0" width="195" height="36" rx="6" fill="#0A0A10" stroke="#2A2A3A" stroke-width="1"/>
     <text x="547" y="24" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#6B7280">pump.fun</text>
-
     <rect x="655" y="0" width="195" height="36" rx="6" fill="#0A0A10" stroke="#2A2A3A" stroke-width="1"/>
     <text x="752" y="24" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#6B7280">movepump</text>
   </g>
 
-  <!-- Row template: y offset starts at 112, increments by 42 -->
   <!-- Row 1 -->
-  <g transform="translate(40, 112)" class="r1">
+  <g transform="translate(40, 112)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D" class="row-highlight"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🔨 Token Creation</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ 2-click OTW</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">1-click (wrapped)</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">1-click (wrapped)</text>
   </g>
 
   <!-- Row 2 -->
-  <g transform="translate(40, 154)" class="r2">
+  <g transform="translate(40, 154)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">📈 Bonding Curve AMM</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Constant Product</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">✅ Constant Product</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">✅ Constant Product</text>
   </g>
 
   <!-- Row 3 -->
-  <g transform="translate(40, 196)" class="r3">
+  <g transform="translate(40, 196)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D" class="row-highlight"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🦀 Cetus CLMM Graduation</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Auto + LP Burn</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Raydium (Solana)</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
   </g>
 
   <!-- Row 4 -->
-  <g transform="translate(40, 238)" class="r4">
+  <g transform="translate(40, 238)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">⭐ Creator Reputation</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ On-Chain Scoring</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
   </g>
 
   <!-- Row 5 -->
-  <g transform="translate(40, 280)" class="r5">
+  <g transform="translate(40, 280)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D" class="row-highlight"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🤖 Agent Automation</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Batch Buy + Copy</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
   </g>
 
   <!-- Row 6 -->
-  <g transform="translate(40, 322)" class="r6">
+  <g transform="translate(40, 322)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🌊 Walrus Media Storage</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Decentralized</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Centralized (AWS)</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Centralized</text>
   </g>
 
   <!-- Row 7 -->
-  <g transform="translate(40, 364)" class="r7">
+  <g transform="translate(40, 364)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D" class="row-highlight"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🔐 Unsigned PTBs</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Non-Custodial</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Server-Signed</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Server-Signed</text>
   </g>
 
   <!-- Row 8 -->
-  <g transform="translate(40, 406)" class="r8">
+  <g transform="translate(40, 406)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🔓 Open Source</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ MIT License</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Closed</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Closed</text>
   </g>
 
   <!-- Row 9 -->
-  <g transform="translate(40, 448)" class="r9">
+  <g transform="translate(40, 448)">
     <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D" class="row-highlight"/>
     <rect x="0" y="0" width="220" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
     <text x="16" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">📦 TypeScript SDK</text>
-
     <rect x="230" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5" class="cell"/>
     <text x="335" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ 186 Tests · 8 Modules</text>
-
     <rect x="450" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="547" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ No SDK</text>
-
     <rect x="655" y="0" width="195" height="36" rx="4" fill="#0A0A10" class="cell"/>
     <text x="752" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ No SDK</text>
   </g>
 
-  <!-- Footer -->
   <text x="450" y="505" text-anchor="middle"
         font-family="'SF Mono',monospace" font-size="9" fill="#3A3A4A">
     Data verified from codebase at time of generation · 2026-05-15</text>
