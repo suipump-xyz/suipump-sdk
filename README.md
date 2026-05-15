@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/architecture.svg" alt="SuiPump SDK" width="100%" />
+  <img src="assets/banner.svg" alt="SuiPump SDK" width="100%" />
 </p>
 
 <h1 align="center">@suipump/sdk</h1>
@@ -603,6 +603,7 @@ sdk/
 │   ├── ARCHITECTURE.md
 │   └── VISION.md
 └── assets/              ← SVG diagrams & badges
+    ├── banner.svg
     ├── architecture.svg
     ├── token-lifecycle.svg
     ├── sui-badge.svg
