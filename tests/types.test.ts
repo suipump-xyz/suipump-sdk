@@ -20,7 +20,7 @@ import type {
 } from '../src/agent.js'
 import type {
   PortfolioHolding,
-  PortfolioSummary,
+  PortfolioOverview,
 } from '../src/portfolio.js'
 import type {
   StreamEvent,
@@ -178,6 +178,7 @@ describe('Type exports', () => {
     const params: CreateTokenParams = {
       name: 'New Token',
       symbol: 'NEW',
+      creatorAddress: '0xcreator',
     }
     expect(params.name).toBe('New Token')
   })
@@ -186,7 +187,7 @@ describe('Type exports', () => {
     const params: ListTokensParams = {
       sort: 'volume',
       limit: 20,
-      cursor: 'abc',
+      offset: 0,
       graduated: false,
     }
     expect(params.sort).toBe('volume')
@@ -205,8 +206,8 @@ describe('Type exports', () => {
 
   it('CopySubscribeParams with defaults', () => {
     const params: CopySubscribeParams = {
-      targetWallet: '0xtarget',
-      subscriberAddress: '0xsub',
+      targetTrader: '0xtarget',
+      subscriber: '0xsub',
     }
     expect(params.maxSuiPerTrade).toBeUndefined()
     expect(params.ratio).toBeUndefined()
@@ -214,8 +215,8 @@ describe('Type exports', () => {
 
   it('CopySubscribeParams with all fields', () => {
     const params: CopySubscribeParams = {
-      targetWallet: '0xtarget',
-      subscriberAddress: '0xsub',
+      targetTrader: '0xtarget',
+      subscriber: '0xsub',
       maxSuiPerTrade: '5000000000',
       ratio: 0.5,
     }
@@ -224,26 +225,41 @@ describe('Type exports', () => {
 
   it('PortfolioHolding type', () => {
     const holding: PortfolioHolding = {
-      coinType: '0xabc::coin::COIN',
-      tokenName: 'Test',
-      tokenSymbol: 'TST',
+      token: {
+        coinType: '0xabc::coin::COIN',
+        curveObjectId: '0x123',
+        name: 'Test',
+        symbol: 'TST',
+        description: '',
+        creatorAddress: '0xcreator',
+        realSuiReserves: '1000',
+        realTokenReserves: '500000',
+        currentPriceMist: '5000',
+        marketCapSui: '50000',
+        totalVolumeSui: '100000',
+        totalTrades: 42,
+        holderCount: 10,
+        curveProgress: 50,
+        graduated: false,
+        createdAt: '2026-01-01T00:00:00Z',
+      },
       balance: '1000',
-      valueMist: '5000000',
-      pnlPct: 15.5,
-      avgBuyPriceMist: '4500',
-      currentPriceMist: '5000',
+      valueSui: '5000000',
     }
-    expect(holding.pnlPct).toBe(15.5)
+    expect(holding.balance).toBe('1000')
+    expect(holding.token.name).toBe('Test')
   })
 
-  it('PortfolioSummary type', () => {
-    const summary: PortfolioSummary = {
-      holdings: [],
-      totalValueMist: '0',
-      totalPnlPct: 0,
-      totalInvestedMist: '0',
+  it('PortfolioOverview type', () => {
+    const summary: PortfolioOverview = {
+      address: '0xaddr',
+      suiBalance: '1000000000',
+      portfolioValueSui: '5000000',
+      holdingsCount: 5,
+      tradesTodayCount: 3,
+      totalTrades: 42,
     }
-    expect(summary.holdings).toHaveLength(0)
+    expect(summary.holdingsCount).toBe(5)
   })
 
   it('NewTokenEvent type', () => {
@@ -308,7 +324,7 @@ describe('Type exports', () => {
       BatchBuyParams: null as any as BatchBuyParams,
       CopySubscribeParams: null as any as CopySubscribeParams,
       PortfolioHolding: null as any as PortfolioHolding,
-      PortfolioSummary: null as any as PortfolioSummary,
+      PortfolioOverview: null as any as PortfolioOverview,
       StreamEvent: null as any as StreamEvent,
       NewTokenEvent: null as any as NewTokenEvent,
       TradeEvent: null as any as TradeEvent,

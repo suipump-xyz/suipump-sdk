@@ -2,90 +2,151 @@
   <img src="assets/banner.svg" alt="SuiPump SDK" width="100%" />
 </p>
 
-<h1 align="center">@suipump/sdk</h1>
+<br/>
 
-<p align="center">
-  <strong>TypeScript SDK for the SuiPump Token Lifecycle Operating System</strong>
-</p>
+<div align="center">
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/@suipump/sdk"><img src="https://img.shields.io/npm/v/@suipump/sdk?style=flat&logo=npm&label=version&color=7C3AED" alt="npm" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/TypeScript-5.5-7C3AED?style=flat&logo=typescript" alt="typescript" /></a>
-  <a href="https://sui.io"><img src="assets/sui-badge.svg" alt="Sui" /></a>
-  <a href="#"><img src="assets/coverage-badge.svg" alt="coverage" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-7C3AED?style=flat" alt="license" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/status-Public%20Preview-22D3EE?style=flat" alt="status" /></a>
-</p>
+# ⚡ @suipump/sdk
 
-<br />
+**TypeScript SDK for the SuiPump Token Lifecycle Operating System**
 
-<blockquote>
-<p><strong>Security-first architecture:</strong> Backend builds unsigned transactions. You sign them with your own wallet. The platform never touches your private keys.</p>
-</blockquote>
+[![npm](https://img.shields.io/npm/v/@suipump/sdk?style=flat&logo=npm&label=version&color=10B981)](https://www.npmjs.com/package/@suipump/sdk)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-10B981?style=flat&logo=typescript)](https://www.typescriptlang.org)
+[![Sui](https://img.shields.io/badge/Sui-10B981?style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ3NzE1IDIgMiA2LjQ3NzE1IDIgMTJDMiAxNy41MjIzIDYuNDc3MTUgMjIgMTIgMjJDMTcuNTIyOCAyMiAyMiAxNy41MjIzIDIyIDEyQzIyIDYuNDc3MTUgMTcuNTIyOCAyIDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==)](https://sui.io)
+[![coverage](assets/coverage-badge.svg)](https://github.com/suipump-xyz/suipump-sdk/actions)
+[![License](https://img.shields.io/badge/license-MIT-10B981?style=flat)](LICENSE)
+[![Status](https://img.shields.io/badge/status-Public%20Preview-10B981?style=flat)](https://github.com/suipump-xyz/suipump-sdk/releases)
 
-<br />
+</div>
+
+<br/>
+
+> **🔐 Security-first architecture:** Backend builds unsigned transactions. You sign them with your own wallet. The platform never touches your private keys.
+
+<br/>
 
 SuiPump is the first token lifecycle operating system purpose-built for Sui's object-centric execution model — from creation to bonding curve to Cetus graduation, every stage lives in one native protocol stack.
 
 This SDK gives developers typed, production-grade access to the entire platform.
 
-<br />
+<details open>
+<summary><strong>📊 Platform Comparison</strong></summary>
+
+<br/>
+<p align="center">
+  <img src="assets/comparison.svg" alt="Platform Comparison" width="100%" />
+</p>
+</details>
+
+<br/>
+
+<details open>
+<summary><strong>📈 SDK Metrics</strong></summary>
+
+<br/>
+<p align="center">
+  <img src="assets/metrics.svg" alt="SDK Metrics" width="100%" />
+</p>
+</details>
 
 ---
 
-## Why SuiPump
+## 🌟 Why SuiPump
 
 Traditional launchpads stop at token creation. SuiPump extends token lifecycle infrastructure across every stage:
 
-| Stage | What happens | SDK Access |
-|-------|-------------|------------|
-| **Launch** | 2-click OTW token creation | `tokens.preparePublish()` / `confirmCreate()` |
-| **Discovery** | Trending, new, near-graduation browse | `tokens.list()` / `tokens.get()` |
-| **Price Discovery** | Constant-product bonding curve AMM | `tokens.buy()` / `tokens.sell()` |
-| **Reputation** | On-chain creator scoring, early-sell detection | `stream.onReputationUpdate()` |
-| **Graduation** | Auto Cetus CLMM pool at threshold | `stream.onGraduated()` |
-| **Liquidity Migration** | LP burn verification, Cetus AMM handoff | `tokens.get()` |
-| **Post-Graduation** | Cetus trading, portfolio analytics | `portfolio.*()` |
-| **Agent Automation** | Batch buy PTB, copy-trade subscriptions | `agent.batchBuy()` / `agent.copySubscribe()` |
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px; overflow-x:auto;">
+
+| Stage | 🚀 What Happens | 📋 SDK Access |
+|-------|-----------------|---------------|
+| **🚀 Launch** | 2-click OTW token creation | `tokens.preparePublish()` / `confirmCreate()` |
+| **🔍 Discovery** | Trending, new, near-graduation browse | `tokens.list()` / `tokens.get()` |
+| **💰 Price Discovery** | Constant-product bonding curve AMM | `tokens.buy()` / `tokens.sell()` |
+| **⭐ Reputation** | On-chain creator scoring, early-sell detection | `stream.onReputationUpdate()` |
+| **🎓 Graduation** | Auto Cetus CLMM pool at threshold | `stream.onGraduated()` |
+| **💧 Liquidity Migration** | LP burn verification, Cetus AMM handoff | `tokens.get()` |
+| **🌊 Post-Graduation** | Cetus trading, portfolio analytics | `portfolio.*()` |
+| **🤖 Agent Automation** | Batch buy PTB, copy-trade subscriptions | `agent.batchBuy()` / `agent.copySubscribe()` |
+
+</div>
 
 Built specifically for Sui's programmable transaction blocks (PTBs) and object model, SuiPump is not a wrapper around a Web2 API — it is a first-class Sui protocol client.
 
 ---
 
-## Features
+## ✨ Features
 
-- **2-Click Token Creation** — OTW-based flow: publish package, create bonding curve. Two transactions, token is live.
-- **Unsigned PTB Architecture** — Backend builds transactions, you sign them. The platform never touches your keys.
-- **Real-Time WebSocket Streams** — New tokens, trades, graduations, chat messages, King of the Hill updates, reputation changes.
-- **Atomic Batch Operations** — Buy up to 10 tokens in a single PTB. Either all succeed or none do.
-- **Copy-Trade Automation** — Subscribe to a target trader, receive pre-built scaled PTBs via webhook.
-- **Walrus Media Upload** — Upload token images permanently to decentralized storage.
-- **Portfolio Tracking** — Holdings, trade history, portfolio overview with SuiNS name resolution.
-- **Transport-Agnostic** — Works with any `ClientWithCoreApi` (gRPC, GraphQL, JSON-RPC).
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**🚀 2-Click Token Creation** — OTW-based flow: publish package, create bonding curve. Two transactions, token is live.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**🔐 Unsigned PTB Architecture** — Backend builds transactions, you sign them. The platform never touches your keys.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**🌊 Real-Time WebSocket Streams** — New tokens, trades, graduations, chat messages, King of the Hill updates, reputation changes.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**⚡ Atomic Batch Operations** — Buy up to 10 tokens in a single PTB. Either all succeed or none do.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**🔄 Copy-Trade Automation** — Subscribe to a target trader, receive pre-built scaled PTBs via webhook.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**🌊 Walrus Media Upload** — Upload token images permanently to decentralized storage.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**📊 Portfolio Tracking** — Holdings, trade history, portfolio overview with SuiNS name resolution.
+</div>
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:12px;">
+
+**🔌 Transport-Agnostic** — Works with any `ClientWithCoreApi` (gRPC, GraphQL, JSON-RPC).
+</div>
+
+</div>
 
 ---
 
-## Security Model
+## 🔒 Security Model
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
 
 | Property | Detail |
 |----------|--------|
-| **Non-Custodial** | Private keys never leave your wallet |
-| **Unsigned PTBs** | Backend returns base64 transaction bytes — your wallet signs |
-| **No Key Storage** | No private keys stored server-side |
-| **Client-Side Signing** | All transactions signed in browser or local environment |
-| **API Key Auth** | Scoped to specific tiers, revokable |
+| **🔑 Non-Custodial** | Private keys never leave your wallet |
+| **📝 Unsigned PTBs** | Backend returns base64 transaction bytes — your wallet signs |
+| **🚫 No Key Storage** | No private keys stored server-side |
+| **✍️ Client-Side Signing** | All transactions signed in browser or local environment |
+| **🔑 API Key Auth** | Scoped to specific tiers, revokable |
 
 This architecture means SuiPump can never move your funds. Even if the backend is compromised, an attacker cannot forge transactions — they lack your signature.
 
+</div>
+
 ---
 
-## Installation
+## 📦 Installation
 
 ```bash
 npm install @suipump/sdk
 ```
 
-**Peer dependency** (required):
+**📎 Peer dependency** (required):
 
 ```bash
 npm install @mysten/sui
@@ -93,7 +154,7 @@ npm install @mysten/sui
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ```typescript
 import { SuiGrpcClient } from '@mysten/sui/grpc'
@@ -110,22 +171,22 @@ const pump = new SuiPump({
   network: 'mainnet',
 })
 
-// List trending tokens
+// 📋 List trending tokens
 const { tokens } = await pump.tokens.list({ sort: 'volume', limit: 10 })
 for (const t of tokens) {
   console.log(`${t.symbol} — ${t.marketCapSui} MCap, ${t.holderCount} holders`)
 }
 
-// Get token details
+// 🔍 Get token details
 const token = await pump.tokens.get('0x...::module::COIN')
 console.log(token.name, token.currentPriceMist, token.curveProgress)
 ```
 
-> See [`examples/quickstart.ts`](./examples/quickstart.ts) for a runnable version.
+> 📖 See [`examples/quickstart.ts`](./examples/quickstart.ts) for a runnable version.
 
 ---
 
-## Token Lifecycle
+## 🔄 Token Lifecycle
 
 <p align="center">
   <img src="assets/token-lifecycle.svg" alt="Token Lifecycle" width="90%" />
@@ -133,23 +194,27 @@ console.log(token.name, token.currentPriceMist, token.curveProgress)
 
 Every token on SuiPump passes through five distinct stages. The SDK provides methods for each:
 
-| Stage | SDK Methods | Description |
-|-------|-------------|-------------|
-| **1. Discovery** | `tokens.list()`, `tokens.get()` | Browse trending, new, and nearly-graduated tokens |
-| **2. Creation** | `tokens.preparePublish()`, `tokens.confirmCreate()` | 2-click OTW flow — deploy coin type, create bonding curve |
-| **3. Bonding Curve** | `tokens.buy()`, `tokens.sell()` | Trade against the constant-product bonding curve AMM |
-| **4. Graduation** | `stream.onGraduated()` | Automatic Cetus CLMM pool creation at threshold |
-| **5. Post-Graduation** | `tokens.get()`, `portfolio.*()` | Cetus AMM trading, portfolio tracking, analytics |
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
+
+| Stage | 🔧 SDK Methods | 📖 Description |
+|-------|----------------|----------------|
+| **1. 🔍 Discovery** | `tokens.list()`, `tokens.get()` | Browse trending, new, and nearly-graduated tokens |
+| **2. 🚀 Creation** | `tokens.preparePublish()`, `tokens.confirmCreate()` | 2-click OTW flow — deploy coin type, create bonding curve |
+| **3. 💰 Bonding Curve** | `tokens.buy()`, `tokens.sell()` | Trade against the constant-product bonding curve AMM |
+| **4. 🎓 Graduation** | `stream.onGraduated()` | Automatic Cetus CLMM pool creation at threshold |
+| **5. 🌊 Post-Graduation** | `tokens.get()`, `portfolio.*()` | Cetus AMM trading, portfolio tracking, analytics |
+
+</div>
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 <p align="center">
   <img src="assets/architecture.svg" alt="Architecture" width="100%" />
 </p>
 
-### Domain-Based Isolation
+### 📐 Domain-Based Isolation
 
 The SDK is one of four independent build domains in the SuiPump monorepo:
 
@@ -165,33 +230,44 @@ The SDK wraps the Backend REST API and the Sui blockchain interface. It requires
 
 ---
 
-## Contract Addresses (Testnet)
+## 📜 Contract Addresses (Testnet)
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
 
 | Contract | Object ID |
 |----------|-----------|
-| Package ID | `0x...` *(deploy in progress)* |
-| Token Registry | `0x...` |
-| Platform Treasury | `0x...` |
-| Curve Config | `0x...` |
+| 📦 Package ID | `0x...` *(deploy in progress)* |
+| 🗂️ Token Registry | `0x...` |
+| 🏦 Platform Treasury | `0x...` |
+| ⚙️ Curve Config | `0x...` |
+
+</div>
 
 Mainnet addresses will be published at launch. Contracts are internal-review complete; external audit is scheduled.
 
 ---
 
-## Current Status
+## 📊 Current Status
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
 
 | Layer | Status |
 |-------|--------|
-| Smart Contracts | Deployed on testnet |
-| Backend API | Staging environment |
-| SDK | Public preview (`v0.1.0`) |
-| Frontend | Internal testing |
+| 📜 Smart Contracts | ✅ Deployed on testnet |
+| ⚙️ Backend API | ✅ Staging environment |
+| 📦 SDK | ✅ Public preview (`v0.1.0-preview`) |
+| 🖥️ Frontend | 🔄 Internal testing |
+
+</div>
 
 ---
 
-## API Reference
+## 📚 API Reference
 
-### `SuiPump` (main class)
+<details>
+<summary><strong>🏗️ SuiPump (Main Class)</strong></summary>
+
+<br/>
 
 ```typescript
 import { SuiPump } from '@suipump/sdk'
@@ -200,7 +276,7 @@ import type { ClientWithCoreApi } from '@mysten/sui/client'
 const pump = new SuiPump(options: SuiPumpConfig)
 ```
 
-**`SuiPumpConfig`:**
+**⚙️ `SuiPumpConfig`:**
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -210,19 +286,22 @@ const pump = new SuiPump(options: SuiPumpConfig)
 | `apiBaseUrl` | `string` | `https://api.{network}.suipump.xyz/v1` | Custom API endpoint |
 | `wsUrl` | `string` | `wss://stream.{network}.suipump.xyz/v1` | Custom WebSocket endpoint |
 
-**Sub-clients:**
+**🔌 Sub-clients:**
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `pump.tokens` | `TokensClient` | Token metadata, creation, trading |
-| `pump.portfolio` | `PortfolioClient` | Holdings, trades, overview |
-| `pump.agent` | `AgentClient` | Batch buy, copy-trade subscriptions |
-| `pump.stream` | `StreamClient` | WebSocket real-time events |
-| `pump.media` | `MediaClient` | Walrus media upload |
+| `pump.tokens` | `TokensClient` | 🪙 Token metadata, creation, trading |
+| `pump.portfolio` | `PortfolioClient` | 📊 Holdings, trades, overview |
+| `pump.agent` | `AgentClient` | 🤖 Batch buy, copy-trade subscriptions |
+| `pump.stream` | `StreamClient` | 🌊 WebSocket real-time events |
+| `pump.media` | `MediaClient` | 🖼️ Walrus media upload |
 
----
+</details>
 
-### `TokensClient`
+<details>
+<summary><strong>🪙 TokensClient</strong></summary>
+
+<br/>
 
 #### `tokens.get(coinType: string): Promise<TokenMetadata>`
 
@@ -250,20 +329,13 @@ const token = await pump.tokens.get('0xCASTER...::caster::CASTER')
 
 List tokens with optional filtering.
 
-| Param | Type | Default | Description |
-|-------|------|---------|-------------|
-| `sort` | `'volume' \| 'created' \| 'market_cap'` | `'created'` | Sort order |
-| `limit` | `number` | `50` | Results per page |
-| `offset` | `number` | `0` | Pagination offset |
-| `graduated` | `boolean` | — | Filter by graduation status |
-
 ```typescript
-// Top 20 by volume
+// 🏆 Top 20 by volume
 const { tokens, limit, offset } = await pump.tokens.list({
   sort: 'volume', limit: 20
 })
 
-// Graduated tokens
+// ✅ Graduated tokens
 const graduated = await pump.tokens.list({ graduated: true, sort: 'market_cap' })
 ```
 
@@ -278,7 +350,7 @@ const info = await pump.tokens.getCreationInfo()
 
 #### `tokens.preparePublish(params: CreateTokenParams): Promise<PublishResult>`
 
-**Step 1 of the 2-click OTW flow.** The backend generates a minimal OTW Move package from your token info and returns an unsigned publish transaction.
+**Step 1️⃣ of the 2-click OTW flow.** The backend generates a minimal OTW Move package from your token info and returns an unsigned publish transaction.
 
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -299,12 +371,11 @@ const result = await pump.tokens.preparePublish({
   creatorAddress: '0x...',
   imageBlobId: 'blob-id-from-media-upload',
 })
-// { publishTxBytes: '...', otwModuleName: 'my_token', otwName: 'MTK', ... }
 ```
 
 #### `tokens.confirmCreate(params: ConfirmCreateParams): Promise<{ token: TokenMetadata; creationTxHash: string }>`
 
-**Step 2 of the 2-click OTW flow.** After the user publishes the OTW package, confirm the token creation. This creates the BondingCurve, registers the token, and initializes the creator vault.
+**Step 2️⃣ of the 2-click OTW flow.** After the user publishes the OTW package, confirm the token creation.
 
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -328,7 +399,7 @@ const { token, creationTxHash } = await pump.tokens.confirmCreate({
 })
 ```
 
-> **Full creation flow:** See [`examples/token-creation.ts`](./examples/token-creation.ts)
+> 📖 **Full creation flow:** See [`examples/token-creation.ts`](./examples/token-creation.ts)
 
 #### `tokens.buy(params: BuyParams): Promise<PTBResult>`
 
@@ -374,14 +445,18 @@ Build an unsigned sell PTB.
 const ptb = await pump.tokens.sell({
   coinType: '0x...::my_token::MY_TOKEN',
   tokenAmount: '1000000',
+  minSuiOutMist: '990000000',
   sellerAddress: '0x...',
   slippageBps: 100,
 })
 ```
 
----
+</details>
 
-### `PortfolioClient`
+<details>
+<summary><strong>📊 PortfolioClient</strong></summary>
+
+<br/>
 
 #### `portfolio.getHoldings(address: string): Promise<{ address: SuiAddress; holdings: PortfolioHolding[] }>`
 
@@ -410,13 +485,16 @@ const overview = await pump.portfolio.getOverview('0x...')
 // { address, suiBalance, portfolioValueSui, holdingsCount, tradesTodayCount, totalTrades }
 ```
 
----
+</details>
 
-### `AgentClient`
+<details>
+<summary><strong>🤖 AgentClient</strong></summary>
+
+<br/>
 
 #### `agent.batchBuy(params: BatchBuyParams): Promise<PTBResult>`
 
-Build a single PTB that buys up to 10 tokens atomically. Either all buys succeed or none do — enforced at the protocol level. Requires **Agent tier** API key.
+Build a single PTB that buys up to 10 tokens atomically. Requires **Agent tier** API key.
 
 | Param | Type | Description |
 |-------|------|-------------|
@@ -463,9 +541,12 @@ Cancel a copy-trade subscription.
 await pump.agent.unsubscribe('sub-id-here')
 ```
 
----
+</details>
 
-### `StreamClient` (WebSocket)
+<details>
+<summary><strong>🌊 StreamClient (WebSocket)</strong></summary>
+
+<br/>
 
 The stream client provides real-time event subscriptions with automatic reconnection.
 
@@ -473,27 +554,27 @@ The stream client provides real-time event subscriptions with automatic reconnec
 const stream = pump.stream
   .onNewToken((event) => {
     // { event: 'new_token', data: TokenMetadata, ts: number }
-    console.log('New token:', event.data.name)
+    console.log('🆕 New token:', event.data.name)
   })
   .onTrade((event) => {
     // { event: 'trade', data: TradeEvent, ts: number }
-    console.log('Trade:', event.data.tradeType, event.data.suiAmount)
+    console.log('💱 Trade:', event.data.tradeType, event.data.suiAmount)
   })
   .onGraduated((event) => {
     // { event: 'graduated', data: { coinType: string }, ts: number }
-    console.log('Graduation!', event.data.coinType)
+    console.log('🎓 Graduation!', event.data.coinType)
   })
   .onChatMessage((event) => {
     // { event: 'chat_message', data: ChatMessage, ts: number }
   })
   .onKothUpdate((event) => {
     // { event: 'koth_update', data: KothData, ts: number }
-    console.log('New KOTH:', event.data.name)
+    console.log('👑 New KOTH:', event.data.name)
   })
   .onReputationUpdate((event) => {
     // { event: 'reputation_update', data: ReputationData, ts: number }
   })
-  .connect() // Start the WebSocket connection
+  .connect() // 🔌 Start the WebSocket connection
 
 // Remove handlers
 stream.offNewToken(handler)
@@ -509,11 +590,14 @@ if (stream.isConnected()) {
 }
 ```
 
-> **Full streaming example:** [`examples/stream-trading.ts`](./examples/stream-trading.ts)
+> 📖 **Full streaming example:** [`examples/stream-trading.ts`](./examples/stream-trading.ts)
 
----
+</details>
 
-### `MediaClient` (Walrus)
+<details>
+<summary><strong>🖼️ MediaClient (Walrus)</strong></summary>
+
+<br/>
 
 #### `media.upload(data: string, contentType: string): Promise<{ blobId: string }>`
 
@@ -535,42 +619,48 @@ const url = pump.media.getUrl(blobId)
 // https://aggregator.walrus-mainnet.walrus.space/v1/{blobId}
 ```
 
+</details>
+
 ---
 
-## Performance
+## ⚡ Performance
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
 
 | Metric | Result |
 |--------|--------|
-| PTB Build Latency | < 50ms |
-| Stream Delivery (p95) | < 200ms |
-| Batch Buy Capacity | 10 tokens atomic |
-| Token Creation | 2 transactions |
-| Indexing Lag | < 1 second |
-| Test Suite | 186+ tests |
+| 🚀 PTB Build Latency | < 50ms |
+| 🌊 Stream Delivery (p95) | < 200ms |
+| ⚡ Batch Buy Capacity | 10 tokens atomic |
+| 🪙 Token Creation | 2 transactions |
+| 📡 Indexing Lag | < 1 second |
+| 🧪 Test Suite | 186+ tests |
+
+</div>
 
 ---
 
-## Types
+## 📋 Types
 
 ```typescript
 import type {
-  // Branded types
+  // 🏷️ Branded types
   SuiAddress,           // string — Sui address
   CoinType,             // string — Full coin type (0xPKG::mod::NAME)
   MistAmount,           // string — Amount in MIST (1 SUI = 1e9 MIST)
 
-  // Token data
+  // 📄 Token data
   TokenMetadata,        // Full token info with market data
   TradeRecord,          // Individual trade record
 
-  // PTB building
+  // 📝 PTB building
   PTBResult,            // { ptbBytes, estimatedGasSui, expectedOut, priceImpactPct }
 
-  // Portfolio
+  // 📊 Portfolio
   PortfolioHolding,     // { token, balance, valueSui }
   PortfolioOverview,    // { address, suiBalance, portfolioValueSui, ... }
 
-  // Real-time
+  // 🌊 Real-time
   StreamEvent,          // Union type of all WebSocket events
   NewTokenEvent,
   TradeStreamEvent,
@@ -579,7 +669,7 @@ import type {
   KothUpdateEvent,
   ReputationUpdateEvent,
 
-  // Chat & media
+  // 💬 Chat & media
   ChatMessage,
   GatedContent,
   KothData,
@@ -589,35 +679,39 @@ import type {
 
 ---
 
-## Networks
+## 🌐 Networks
 
-| Network | gRPC Endpoint | API Base URL | WebSocket URL |
-|---------|---------------|--------------|---------------|
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
+
+| Network | 🔗 gRPC Endpoint | ⚙️ API Base URL | 🌊 WebSocket URL |
+|---------|------------------|-----------------|-------------------|
 | **mainnet** | `https://fullnode.mainnet.sui.io:443` | `https://api.mainnet.suipump.xyz/v1` | `wss://stream.mainnet.suipump.xyz/v1` |
 | **testnet** | `https://fullnode.testnet.sui.io:443` | `https://api.testnet.suipump.xyz/v1` | `wss://stream.testnet.suipump.xyz/v1` |
 | **devnet** | `https://fullnode.devnet.sui.io:443` | `https://api.devnet.suipump.xyz/v1` | `wss://stream.devnet.suipump.xyz/v1` |
 
+</div>
+
 ---
 
-## Roadmap
+## 🗺️ Roadmap
 
 | Version | Focus | Status |
 |---------|-------|--------|
-| **v0.1** | SDK Preview — OTW creation, PTB builder, streams, Walrus, portfolio API | ✅ Live |
-| **v0.2** | Public Launchpad UI — discovery page, token chart, buy/sell widgets | 🔄 In progress |
-| **v0.3** | Agent Automation — batch buy, copy-trade, webhook infrastructure | 📅 Planned |
-| **v0.4** | Reputation Layer — on-chain creator scoring, analytics, leaderboards | 📅 Planned |
-| **v1.0** | Mainnet Production — audited contracts, mainnet deploy, API GA | 📅 Q3 2026 |
+| **v0.1** 🚀 | SDK Preview — OTW creation, PTB builder, streams, Walrus, portfolio API | ✅ Live |
+| **v0.2** 🖥️ | Public Launchpad UI — discovery page, token chart, buy/sell widgets | 🔄 In progress |
+| **v0.3** 🤖 | Agent Automation — batch buy, copy-trade, webhook infrastructure | 📅 Planned |
+| **v0.4** ⭐ | Reputation Layer — on-chain creator scoring, analytics, leaderboards | 📅 Planned |
+| **v1.0** ✅ | Mainnet Production — audited contracts, mainnet deploy, API GA | 📅 Q3 2026 |
 
 ---
 
-## Examples
+## 📖 Examples
 
 | File | Description |
 |------|-------------|
-| [`examples/quickstart.ts`](./examples/quickstart.ts) | SDK setup, list tokens, get metadata, portfolio overview |
-| [`examples/token-creation.ts`](./examples/token-creation.ts) | Complete 2-click OTW token creation flow |
-| [`examples/stream-trading.ts`](./examples/stream-trading.ts) | WebSocket subscriptions, buy/sell PTB building, batch buy, copy-trade, media upload |
+| [`examples/quickstart.ts`](./examples/quickstart.ts) | 🚀 SDK setup, list tokens, get metadata, portfolio overview |
+| [`examples/token-creation.ts`](./examples/token-creation.ts) | 🪙 Complete 2-click OTW token creation flow |
+| [`examples/stream-trading.ts`](./examples/stream-trading.ts) | 🌊 WebSocket subscriptions, buy/sell PTB building, batch buy, copy-trade, media upload |
 
 Run any example:
 
@@ -627,7 +721,7 @@ SUIPUMP_API_KEY=your-key npx tsx examples/quickstart.ts
 
 ---
 
-## Error Handling
+## ❌ Error Handling
 
 All methods throw typed errors on failure:
 
@@ -645,17 +739,21 @@ try {
 
 ---
 
-## API Tiers
+## 💳 API Tiers
+
+<div style="background:#0A0A0F; border:1px solid #1A1A2A; border-radius:8px; padding:16px;">
 
 | Tier | Rate Limit | Access |
 |------|-----------|--------|
-| **Free** | 60 req/min | Read-only endpoints (`GET`), streams |
-| **Pro** | 600 req/min | All endpoints including PTB building |
-| **Agent** | 6,000 req/min | Batch buy, copy-trade, priority stream |
+| **🆓 Free** | 60 req/min | Read-only endpoints (`GET`), streams |
+| **⚡ Pro** | 600 req/min | All endpoints including PTB building |
+| **🤖 Agent** | 6,000 req/min | Batch buy, copy-trade, priority stream |
+
+</div>
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 ```bash
 git clone https://github.com/suipump-xyz/suipump-sdk.git
@@ -668,7 +766,7 @@ npm run build     # Build to dist/
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for branch naming conventions and PR checklist.
 
-### Project Structure
+### 📂 Project Structure
 
 ```
 sdk/
@@ -680,11 +778,19 @@ sdk/
 │   ├── stream.ts        ← WebSocket event streaming
 │   ├── media.ts         ← Walrus media upload
 │   ├── types.ts         ← All TypeScript interfaces
+│   ├── validation.ts    ← Input validation utilities
 │   └── index.ts         ← Public exports
 ├── tests/               ← Vitest test suite (186+ tests)
 ├── examples/            ← Runnable example files
 ├── docs/                ← Architecture & vision docs
 ├── assets/              ← SVG diagrams & badges
+│   ├── banner.svg       ← Hero banner
+│   ├── architecture.svg ← System architecture diagram
+│   ├── token-lifecycle.svg ← Token flow visualization
+│   ├── comparison.svg   ← Platform comparison chart
+│   ├── metrics.svg      ← SDK metrics bar chart
+│   ├── sui-badge.svg    ← Sui ecosystem badge
+│   └── coverage-badge.svg
 ├── LICENSE
 ├── SECURITY.md
 ├── CONTRIBUTING.md
@@ -694,16 +800,16 @@ sdk/
 
 ---
 
-## License
+## 📄 License
 
 MIT © 2026 SuiPump
 
-<br />
+<br/>
 
 <p align="center">
-  <sub>Built on <a href="https://sui.io">Sui</a>.
-  Powered by <a href="https://www.walrus.xyz">Walrus</a>,
-  <a href="https://cetus.zone">Cetus</a>,
-  <a href="https://suins.io">SuiNS</a>, and
-  <a href="https://enoki.mystenlabs.com">Enoki</a>.</sub>
+  <sub>Built on <a href="https://sui.io">⛓️ Sui</a>.
+  Powered by <a href="https://www.walrus.xyz">🌊 Walrus</a>,
+  <a href="https://cetus.zone">🦀 Cetus</a>,
+  <a href="https://suins.io">🔗 SuiNS</a>, and
+  <a href="https://enoki.mystenlabs.com">🔑 Enoki</a>.</sub>
 </p>
