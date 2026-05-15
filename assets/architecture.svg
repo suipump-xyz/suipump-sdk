@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0F1219; }
+      .group-box { fill: none; stroke-dasharray: 6 6; stroke-width: 1px; rx: 8px; }
+      .solid-box { fill: #1E1B3A; stroke: #805AD5; stroke-width: 2px; rx: 8px; }
+      .client-box { fill: #322659; stroke: #6B46C1; stroke-width: 1px; rx: 6px; }
+      .app-box { fill: #2D3748; stroke: none; rx: 6px; }
+      .api-bg { fill: #14343B; stroke: #319795; stroke-width: 2px; rx: 8px; }
+      .api-box { fill: #1D4E5F; stroke: #319795; stroke-width: 1px; rx: 6px; }
+      .chain-bg { fill: #1A365D; stroke: #3182CE; stroke-width: 2px; rx: 8px; }
+      .chain-box { fill: #2B6CB0; stroke: #3182CE; stroke-width: 1px; rx: 6px; }
+      
+      .text-title { font-family: sans-serif; font-size: 14px; fill: #A0AEC0; font-weight: bold; letter-spacing: 1px; }
+      .text-box { font-family: sans-serif; font-size: 14px; fill: #E2E8F0; text-anchor: middle; font-weight: 500; }
+      .text-sub { font-family: sans-serif; font-size: 11px; fill: #B794F4; text-anchor: middle; }
+      
+      .arrow { stroke: #718096; stroke-width: 2px; fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#718096" />
+    </marker>
+  </defs>
+
+  <rect width="900" height="680" class="bg"/>
+
+  <text x="450" y="40" font-family="sans-serif" font-size="24" fill="#E2E8F0" text-anchor="middle" font-weight="bold">SuiPump SDK Architecture</text>
+  <line x1="200" y1="55" x2="700" y2="55" stroke="#2D3748" stroke-width="2" />
+
+  <g transform="translate(50, 80)">
+    <rect width="800" height="90" class="group-box" stroke="#4A5568" />
+    <text x="20" y="25" class="text-title">YOUR APPLICATION</text>
+    
+    <rect x="30" y="40" width="160" height="35" class="app-box"/>
+    <text x="110" y="63" class="text-box">Frontend DApp</text>
+    
+    <rect x="220" y="40" width="160" height="35" class="app-box"/>
+    <text x="300" y="63" class="text-box">Backend Service</text>
+
+    <rect x="410" y="40" width="160" height="35" class="app-box"/>
+    <text x="490" y="63" class="text-box">Telegram Bot</text>
+
+    <rect x="600" y="40" width="160" height="35" class="app-box"/>
+    <text x="680" y="63" class="text-box">CLI Script</text>
+  </g>
+
+  <g transform="translate(50, 200)">
+    <rect width="800" height="200" class="solid-box" />
+    <text x="20" y="25" class="text-title" fill="#B794F4">@SUIPUMP/SDK</text>
+
+    <rect x="30" y="40" width="135" height="55" class="client-box"/>
+    <text x="97" y="63" class="text-box">TokensClient</text>
+    <text x="97" y="80" class="text-sub">get · list · buy</text>
+
+    <rect x="185" y="40" width="135" height="55" class="client-box"/>
+    <text x="252" y="63" class="text-box">PortfolioClient</text>
+    <text x="252" y="80" class="text-sub">holdings · trades</text>
+
+    <rect x="340" y="40" width="135" height="55" class="client-box"/>
+    <text x="407" y="63" class="text-box">AgentClient</text>
+    <text x="407" y="80" class="text-sub">batch · copy trade</text>
+
+    <rect x="495" y="40" width="135" height="55" class="client-box"/>
+    <text x="562" y="63" class="text-box">StreamClient</text>
+    <text x="562" y="80" class="text-sub">events · ws</text>
+
+    <rect x="650" y="40" width="135" height="55" class="client-box"/>
+    <text x="717" y="63" class="text-box">MediaClient</text>
+    <text x="717" y="80" class="text-sub">upload · walrus</text>
+
+    <rect x="250" y="125" width="300" height="50" rx="25" fill="#6B46C1" stroke="#9F7AEA" stroke-width="2"/>
+    <text x="400" y="155" class="text-box" font-weight="bold">SuiPump Class (Main Entry)</text>
+  </g>
+
+  <g transform="translate(50, 430)">
+    <rect width="800" height="90" class="api-bg" />
+    <text x="20" y="25" class="text-title" fill="#38B2AC">BACKEND API LAYER</text>
+
+    <rect x="30" y="40" width="220" height="35" class="api-box"/>
+    <text x="140" y="63" class="text-box">REST API (Express)</text>
+    
+    <rect x="290" y="40" width="220" height="35" class="api-box"/>
+    <text x="400" y="63" class="text-box">WebSocket Server</text>
+
+    <rect x="550" y="40" width="220" height="35" class="api-box"/>
+    <text x="660" y="63" class="text-box">Indexer + Processor</text>
+  </g>
+
+  <g transform="translate(50, 550)">
+    <rect width="800" height="90" class="chain-bg" />
+    <text x="20" y="25" class="text-title" fill="#63B3ED">SUI BLOCKCHAIN</text>
+
+    <rect x="30" y="40" width="160" height="35" class="chain-box"/>
+    <text x="110" y="63" class="text-box">Bonding Curve</text>
+    
+    <rect x="220" y="40" width="160" height="35" class="chain-box"/>
+    <text x="300" y="63" class="text-box">Factory</text>
+
+    <rect x="410" y="40" width="160" height="35" class="chain-box"/>
+    <text x="490" y="63" class="text-box">Graduation</text>
+
+    <rect x="600" y="40" width="160" height="35" class="chain-box"/>
+    <text x="680" y="63" class="text-box">Treasury</text>
+  </g>
+
+  <line x1="160" y1="155" x2="160" y2="195" class="arrow" marker-end="url(#arrowhead)" />
+  <line x1="350" y1="155" x2="350" y2="195" class="arrow" marker-end="url(#arrowhead)" />
+  <line x1="540" y1="155" x2="540" y2="195" class="arrow" marker-end="url(#arrowhead)" />
+  <line x1="730" y1="155" x2="730" y2="195" class="arrow" marker-end="url(#arrowhead)" />
+
+  <line x1="450" y1="375" x2="450" y2="425" class="arrow" marker-end="url(#arrowhead)" stroke="#B794F4" />
+
+  <line x1="450" y1="520" x2="450" y2="545" class="arrow" marker-end="url(#arrowhead)" stroke="#38B2AC" />
+</svg>

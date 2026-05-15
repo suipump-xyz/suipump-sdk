@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="104" height="20" viewBox="0 0 104 20">
+  <linearGradient id="a" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="b"><rect width="104" height="20" rx="3" fill="#fff"/></clipPath>
+  <g clip-path="url(#b)">
+    <rect width="61" height="20" fill="#4A5568"/>
+    <rect x="61" width="43" height="20" fill="#009A66"/>
+    <rect width="104" height="20" fill="url(#a)"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="110">
+    <text x="315" y="140" transform="scale(.1)" fill="#fff" textLength="510">coverage</text>
+    <text x="815" y="140" transform="scale(.1)" fill="#fff" font-weight="bold" textLength="330">95%</text>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" width="100%" height="100%">
+  <defs>
+    <style>
+      .box { rx: 12px; stroke-width: 2px; }
+      .text-title { font-family: sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; }
+      .text-sub { font-family: sans-serif; font-size: 11px; fill: #A0AEC0; text-anchor: middle; }
+      .line { stroke: #4A5568; stroke-width: 3px; stroke-dasharray: 6 6; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="220" fill="#0A0A10"/>
+
+  <line x1="100" y1="110" x2="900" y2="110" class="line" />
+
+  <g transform="translate(50, 40)">
+    <rect width="160" height="140" fill="#1A1130" stroke="#6B46C1" class="box" />
+    <circle cx="80" cy="45" r="20" fill="none" stroke="#9F7AEA" stroke-width="3"/>
+    <circle cx="80" cy="45" r="8" fill="#9F7AEA"/>
+    <line x1="94" y1="59" x2="105" y2="70" stroke="#9F7AEA" stroke-width="4" stroke-linecap="round"/>
+    <text x="80" y="95" class="text-title" fill="#E2E8F0">Discovery</text>
+    <text x="80" y="115" class="text-sub">tokens.list()</text>
+    <text x="80" y="130" class="text-sub">tokens.get()</text>
+  </g>
+
+  <g transform="translate(235, 40)">
+    <rect width="160" height="140" fill="#1A1130" stroke="#805AD5" class="box" />
+    <polygon points="80,25 100,37 100,61 80,73 60,61 60,37" fill="none" stroke="#B794F4" stroke-width="3"/>
+    <line x1="70" y1="49" x2="90" y2="49" stroke="#B794F4" stroke-width="3"/>
+    <line x1="80" y1="39" x2="80" y2="59" stroke="#B794F4" stroke-width="3"/>
+    <text x="80" y="95" class="text-title" fill="#E2E8F0">Creation</text>
+    <text x="80" y="115" class="text-sub">.preparePublish()</text>
+    <text x="80" y="130" class="text-sub">.confirmCreate()</text>
+  </g>
+
+  <g transform="translate(420, 40)">
+    <rect width="160" height="140" fill="#0A1B29" stroke="#00A3C4" class="box" />
+    <circle cx="80" cy="45" r="24" fill="none" stroke="#4FD1C5" stroke-width="2"/>
+    <path d="M 60 55 Q 70 35 80 45 T 100 35" fill="none" stroke="#38B2AC" stroke-width="4" stroke-linecap="round"/>
+    <text x="80" y="95" class="text-title" fill="#E2E8F0">Bonding Curve</text>
+    <text x="80" y="115" class="text-sub">tokens.buy()</text>
+    <text x="80" y="130" class="text-sub">tokens.sell()</text>
+  </g>
+
+  <g transform="translate(605, 40)">
+    <rect width="160" height="140" fill="#2D1E0B" stroke="#D69E2E" class="box" />
+    <circle cx="80" cy="45" r="24" fill="none" stroke="#F6E05E" stroke-width="2"/>
+    <polygon points="80,25 85,38 99,38 88,46 92,59 80,51 68,59 72,46 61,38 75,38" fill="#D69E2E"/>
+    <text x="80" y="95" class="text-title" fill="#E2E8F0">Graduation</text>
+    <text x="80" y="115" class="text-sub">stream.onGraduated()</text>
+    <text x="80" y="130" class="text-sub">Auto Cetus CLMM</text>
+  </g>
+
+  <g transform="translate(790, 40)">
+    <rect width="160" height="140" fill="#092413" stroke="#38A169" class="box" />
+    <circle cx="80" cy="45" r="24" fill="none" stroke="#68D391" stroke-width="2"/>
+    <polyline points="68,45 77,54 94,36" fill="none" stroke="#48BB78" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="95" class="text-title" fill="#E2E8F0">Post-Grad</text>
+    <text x="80" y="115" class="text-sub">portfolio.*()</text>
+    <text x="80" y="130" class="text-sub">tokens.get()</text>
+  </g>
+</svg>
