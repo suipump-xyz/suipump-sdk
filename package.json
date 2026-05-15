@@ -1,6 +1,29 @@
 {
   "name": "@suipump/sdk",
   "version": "0.1.0",
+  "description": "Token lifecycle operating system for Sui — launch, trade, graduate, and automate tokens through one native protocol stack",
+  "keywords": [
+    "sui",
+    "blockchain",
+    "sdk",
+    "defi",
+    "launchpad",
+    "memecoin",
+    "walrus",
+    "cetus",
+    "typescript",
+    "web3"
+  ],
+  "homepage": "https://suipump.xyz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suipump-xyz/suipump-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suipump-xyz/suipump-sdk/issues"
+  },
+  "license": "MIT",
+  "author": "SuiPump",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

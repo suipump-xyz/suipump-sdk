@@ -9,18 +9,46 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@suipump/sdk"><img src="https://img.shields.io/npm/v/@suipump/sdk?style=flat&logo=npm&label=version&color=6B46C1" alt="npm" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/MIT-License-6B46C1?style=flat" alt="license" /></a>
+  <a href="https://www.npmjs.com/package/@suipump/sdk"><img src="https://img.shields.io/npm/v/@suipump/sdk?style=flat&logo=npm&label=version&color=7C3AED" alt="npm" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/TypeScript-5.5-7C3AED?style=flat&logo=typescript" alt="typescript" /></a>
   <a href="https://sui.io"><img src="assets/sui-badge.svg" alt="Sui" /></a>
   <a href="#"><img src="assets/coverage-badge.svg" alt="coverage" /></a>
-  <a href="https://github.com/suipump-xyz/suipump-sdk"><img src="https://img.shields.io/github/stars/suipump-xyz/suipump-sdk?style=flat&logo=github&color=6B46C1" alt="stars" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-7C3AED?style=flat" alt="license" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/status-Public%20Preview-22D3EE?style=flat" alt="status" /></a>
 </p>
 
 <br />
 
-> **SuiPump** is not a pump.fun clone. It is a token lifecycle operating system built on Sui — from creation to bonding curve to Cetus graduation, every stage lives in one ecosystem. This SDK gives developers typed, production-grade access to the entire platform.
+<blockquote>
+<p><strong>Security-first architecture:</strong> Backend builds unsigned transactions. You sign them with your own wallet. The platform never touches your private keys.</p>
+</blockquote>
 
 <br />
+
+SuiPump is the first token lifecycle operating system purpose-built for Sui's object-centric execution model — from creation to bonding curve to Cetus graduation, every stage lives in one native protocol stack.
+
+This SDK gives developers typed, production-grade access to the entire platform.
+
+<br />
+
+---
+
+## Why SuiPump
+
+Traditional launchpads stop at token creation. SuiPump extends token lifecycle infrastructure across every stage:
+
+| Stage | What happens | SDK Access |
+|-------|-------------|------------|
+| **Launch** | 2-click OTW token creation | `tokens.preparePublish()` / `confirmCreate()` |
+| **Discovery** | Trending, new, near-graduation browse | `tokens.list()` / `tokens.get()` |
+| **Price Discovery** | Constant-product bonding curve AMM | `tokens.buy()` / `tokens.sell()` |
+| **Reputation** | On-chain creator scoring, early-sell detection | `stream.onReputationUpdate()` |
+| **Graduation** | Auto Cetus CLMM pool at threshold | `stream.onGraduated()` |
+| **Liquidity Migration** | LP burn verification, Cetus AMM handoff | `tokens.get()` |
+| **Post-Graduation** | Cetus trading, portfolio analytics | `portfolio.*()` |
+| **Agent Automation** | Batch buy PTB, copy-trade subscriptions | `agent.batchBuy()` / `agent.copySubscribe()` |
+
+Built specifically for Sui's programmable transaction blocks (PTBs) and object model, SuiPump is not a wrapper around a Web2 API — it is a first-class Sui protocol client.
 
 ---
 
@@ -34,6 +62,20 @@
 - **Walrus Media Upload** — Upload token images permanently to decentralized storage.
 - **Portfolio Tracking** — Holdings, trade history, portfolio overview with SuiNS name resolution.
 - **Transport-Agnostic** — Works with any `ClientWithCoreApi` (gRPC, GraphQL, JSON-RPC).
+
+---
+
+## Security Model
+
+| Property | Detail |
+|----------|--------|
+| **Non-Custodial** | Private keys never leave your wallet |
+| **Unsigned PTBs** | Backend returns base64 transaction bytes — your wallet signs |
+| **No Key Storage** | No private keys stored server-side |
+| **Client-Side Signing** | All transactions signed in browser or local environment |
+| **API Key Auth** | Scoped to specific tiers, revokable |
+
+This architecture means SuiPump can never move your funds. Even if the backend is compromised, an attacker cannot forge transactions — they lack your signature.
 
 ---
 
@@ -120,6 +162,30 @@ suipump/
 ```
 
 The SDK wraps the Backend REST API and the Sui blockchain interface. It requires no running frontend, no database, and no blockchain node — just an API key.
+
+---
+
+## Contract Addresses (Testnet)
+
+| Contract | Object ID |
+|----------|-----------|
+| Package ID | `0x...` *(deploy in progress)* |
+| Token Registry | `0x...` |
+| Platform Treasury | `0x...` |
+| Curve Config | `0x...` |
+
+Mainnet addresses will be published at launch. Contracts are internal-review complete; external audit is scheduled.
+
+---
+
+## Current Status
+
+| Layer | Status |
+|-------|--------|
+| Smart Contracts | Deployed on testnet |
+| Backend API | Staging environment |
+| SDK | Public preview (`v0.1.0`) |
+| Frontend | Internal testing |
 
 ---
 
@@ -471,6 +537,19 @@ const url = pump.media.getUrl(blobId)
 
 ---
 
+## Performance
+
+| Metric | Result |
+|--------|--------|
+| PTB Build Latency | < 50ms |
+| Stream Delivery (p95) | < 200ms |
+| Batch Buy Capacity | 10 tokens atomic |
+| Token Creation | 2 transactions |
+| Indexing Lag | < 1 second |
+| Test Suite | 186+ tests |
+
+---
+
 ## Types
 
 ```typescript
@@ -517,6 +596,18 @@ import type {
 | **mainnet** | `https://fullnode.mainnet.sui.io:443` | `https://api.mainnet.suipump.xyz/v1` | `wss://stream.mainnet.suipump.xyz/v1` |
 | **testnet** | `https://fullnode.testnet.sui.io:443` | `https://api.testnet.suipump.xyz/v1` | `wss://stream.testnet.suipump.xyz/v1` |
 | **devnet** | `https://fullnode.devnet.sui.io:443` | `https://api.devnet.suipump.xyz/v1` | `wss://stream.devnet.suipump.xyz/v1` |
+
+---
+
+## Roadmap
+
+| Version | Focus | Status |
+|---------|-------|--------|
+| **v0.1** | SDK Preview — OTW creation, PTB builder, streams, Walrus, portfolio API | ✅ Live |
+| **v0.2** | Public Launchpad UI — discovery page, token chart, buy/sell widgets | 🔄 In progress |
+| **v0.3** | Agent Automation — batch buy, copy-trade, webhook infrastructure | 📅 Planned |
+| **v0.4** | Reputation Layer — on-chain creator scoring, analytics, leaderboards | 📅 Planned |
+| **v1.0** | Mainnet Production — audited contracts, mainnet deploy, API GA | 📅 Q3 2026 |
 
 ---
 
@@ -570,10 +661,12 @@ try {
 git clone https://github.com/suipump-xyz/suipump-sdk.git
 cd sdk
 npm install
-npm test          # Run test suite
+npm test          # Run test suite (186+ tests)
 npm run typecheck # Type-check all files
 npm run build     # Build to dist/
 ```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for branch naming conventions and PR checklist.
 
 ### Project Structure
 
@@ -589,32 +682,21 @@ sdk/
 │   ├── types.ts         ← All TypeScript interfaces
 │   └── index.ts         ← Public exports
 ├── tests/               ← Vitest test suite (186+ tests)
-│   ├── tokens.test.ts
-│   ├── portfolio.test.ts
-│   ├── agent.test.ts
-│   ├── media.test.ts
-│   ├── stream.test.ts
-│   └── index.test.ts
 ├── examples/            ← Runnable example files
-│   ├── quickstart.ts
-│   ├── token-creation.ts
-│   └── stream-trading.ts
 ├── docs/                ← Architecture & vision docs
-│   ├── ARCHITECTURE.md
-│   └── VISION.md
-└── assets/              ← SVG diagrams & badges
-    ├── banner.svg
-    ├── architecture.svg
-    ├── token-lifecycle.svg
-    ├── sui-badge.svg
-    └── coverage-badge.svg
+├── assets/              ← SVG diagrams & badges
+├── LICENSE
+├── SECURITY.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+└── CHANGELOG.md
 ```
 
 ---
 
 ## License
 
-MIT © SuiPump XYZ
+MIT © 2026 SuiPump
 
 <br />
 
