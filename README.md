@@ -236,14 +236,20 @@ The SDK wraps the Backend REST API and the Sui blockchain interface. It requires
 
 | Contract | Object ID |
 |----------|-----------|
-| 📦 Package ID | `0x...` *(deploy in progress)* |
-| 🗂️ Token Registry | `0x...` |
-| 🏦 Platform Treasury | `0x...` |
-| ⚙️ Curve Config | `0x...` |
+| 📦 Package ID | `0x1a6046b029116bb4c8bf1b3f218ced1ffefd50422ef29c1cd4dab9d65ff46f17` |
+| 🗂️ Token Registry (Factory) | `0x6974dfeb78c1d9fcf6ef02ac96988dc2c966ecc3e5fcb3ec78a4942218bf9cc6` |
+| 🏦 Platform Treasury | `0xb6f454435d60e1914c68f5d7493fd1ca0d7c2dc8b6ec297e360f41103d21b9bb` |
+| 🔼 Upgrade Cap | `0x0a9778c506837a8cbfc2c35059a24ccc46746a021a259805903052f5f8569d0a` |
+| 👤 Deployer | `0xa02a2b3bfd8de3ca63b5c393eea71b080686f53f434ba8c41db4116ab6e2444d` |
+| 🧪 Toolchain | `sui 1.71.1` (edition `2024.beta`) |
 
 </div>
 
-Mainnet addresses will be published at launch. Contracts are internal-review complete; external audit is scheduled.
+**Network:** `testnet` · **Deployed:** `2026-05-14` · **Move Tests:** `75/75 pass, zero warnings`
+
+> 🔍 View on [Sui Explorer (Testnet)](https://testnet.suiscan.xyz/object/0x1a6046b029116bb4c8bf1b3f218ced1ffefd50422ef29c1cd4dab9d65ff46f17)
+
+Mainnet addresses will be published at launch. External audit is scheduled.
 
 ---
 
@@ -253,10 +259,12 @@ Mainnet addresses will be published at launch. Contracts are internal-review com
 
 | Layer | Status |
 |-------|--------|
-| 📜 Smart Contracts | ✅ Deployed on testnet |
+| 📜 Smart Contracts | ✅ **Deployed on testnet** — 13 modules, 75/75 tests |
 | ⚙️ Backend API | ✅ Staging environment |
 | 📦 SDK | ✅ Public preview (`v0.1.0-preview`) |
 | 🖥️ Frontend | 🔄 Internal testing |
+
+**Deployment:** Package `0x1a6...f17` · Token Registry `0x697...cc6` · Platform Treasury `0xb6f...bb9`
 
 </div>
 
