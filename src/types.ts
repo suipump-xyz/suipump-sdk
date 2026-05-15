@@ -1,12 +1,7 @@
-// sdk/src/types.ts - Shared types for SuiPump SDK
 export interface PTBResult {
-  /** Base64-encoded unsigned Transaction. Sign and submit with your wallet. */
   ptbBytes: string
-  /** Estimated gas cost in SUI (informational only) */
   estimatedGasSui: string
-  /** Expected primary output amount as string (avoids JS precision loss) */
   expectedOut: string
-  /** Price impact as percentage (0-100) */
   priceImpactPct: number
 }
 
@@ -39,6 +34,61 @@ export interface TokenMetadata {
   deepbookPoolId?: SuiAddress
   createdAt: string
   graduatedAt?: string
+  lpBurnTxHash?: string
+  lpBurnVerified: boolean
+}
+
+export interface TradeEvent {
+  txHash: string
+  tokenId: string
+  coinType: CoinType
+  trader: SuiAddress
+  tradeType: 'buy' | 'sell'
+  suiAmount: MistAmount
+  tokenAmount: string
+  priceMist: MistAmount
+  timestamp: string
+}
+
+export interface ChatMessage {
+  id: string
+  coinType: CoinType
+  sender: SuiAddress
+  senderName?: string
+  content: string
+  timestamp: string
+}
+
+export interface GatedContent {
+  blobId: string
+  coinType: CoinType
+  title: string
+  contentType: string
+  createdAt: string
+}
+
+export interface KothData {
+  coinType: CoinType
+  name: string
+  symbol: string
+  volumeSui: string
+  priceMist: MistAmount
+  marketCapSui: string
+  holderCount: number
+  lastUpdated: string
+  graduated: boolean
+  walrusBlobId?: string
+}
+
+export interface ReputationData {
+  address: SuiAddress
+  score: number
+  tier: 'none' | 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond'
+  tokensCreated: number
+  tokensGraduated: number
+  totalVolumeMist: MistAmount
+  earlySellFlags: number
+  lastUpdated: string
 }
 
 export interface TradeRecord {

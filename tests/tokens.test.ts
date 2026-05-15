@@ -65,8 +65,8 @@ describe('TokensClient', () => {
   })
 
   describe('get()', () => {
-    it('should fetch token metadata by coinType', async () => {
-      vi.stubGlobal('fetch', mockFetch(sampleToken))
+    it('should unwrap token from response', async () => {
+      vi.stubGlobal('fetch', mockFetch({ token: sampleToken }))
       const client = createClient()
       const result = await client.get('0xabc::coin::COIN')
       expect(result.coinType).toBe('0xabc::coin::COIN')
@@ -77,7 +77,7 @@ describe('TokensClient', () => {
     it('should encode special characters in coinType', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve(sampleToken),
+        json: () => Promise.resolve({ token: sampleToken }),
         text: () => Promise.resolve(''),
       })
       vi.stubGlobal('fetch', fetchMock)
@@ -109,7 +109,8 @@ describe('TokensClient', () => {
   describe('list()', () => {
     const sampleList = {
       tokens: [sampleToken],
-      nextCursor: 'cursor_abc',
+      limit: 50,
+      offset: 0,
     }
 
     it('should fetch token list without params', async () => {
@@ -117,13 +118,14 @@ describe('TokensClient', () => {
       const client = createClient()
       const result = await client.list()
       expect(result.tokens).toHaveLength(1)
-      expect(result.nextCursor).toBe('cursor_abc')
+      expect(result.limit).toBe(50)
+      expect(result.offset).toBe(0)
     })
 
     it('should pass sort parameter', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ tokens: [] }),
+        json: () => Promise.resolve({ tokens: [], limit: 50, offset: 0 }),
         text: () => Promise.resolve(''),
       })
       vi.stubGlobal('fetch', fetchMock)
@@ -135,7 +137,7 @@ describe('TokensClient', () => {
     it('should pass limit parameter', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ tokens: [] }),
+        json: () => Promise.resolve({ tokens: [], limit: 20, offset: 0 }),
         text: () => Promise.resolve(''),
       })
       vi.stubGlobal('fetch', fetchMock)
@@ -144,64 +146,50 @@ describe('TokensClient', () => {
       expect(fetchMock.mock.calls[0][0]).toContain('limit=20')
     })
 
-    it('should pass cursor parameter', async () => {
+    it('should pass offset parameter', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ tokens: [] }),
+        json: () => Promise.resolve({ tokens: [], limit: 50, offset: 10 }),
         text: () => Promise.resolve(''),
       })
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
-      await client.list({ cursor: 'abc123' })
-      expect(fetchMock.mock.calls[0][0]).toContain('cursor=abc123')
+      await client.list({ offset: 10 })
+      expect(fetchMock.mock.calls[0][0]).toContain('offset=10')
     })
 
-    it('should pass graduated parameter when false', async () => {
+    it('should call /tokens/graduated when graduated is true', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ tokens: [] }),
+        json: () => Promise.resolve({ tokens: [], limit: 20, offset: 0 }),
         text: () => Promise.resolve(''),
       })
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
-      await client.list({ graduated: false })
-      expect(fetchMock.mock.calls[0][0]).toContain('graduated=false')
-    })
-
-    it('should pass graduated parameter when true', async () => {
-      const fetchMock = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve({ tokens: [] }),
-        text: () => Promise.resolve(''),
-      })
-      vi.stubGlobal('fetch', fetchMock)
-      const client = createClient()
-      await client.list({ graduated: true })
-      expect(fetchMock.mock.calls[0][0]).toContain('graduated=true')
+      await client.list({ graduated: true, limit: 20 })
+      expect(fetchMock.mock.calls[0][0]).toContain('/tokens/graduated')
     })
 
     it('should combine multiple parameters', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ tokens: [] }),
+        json: () => Promise.resolve({ tokens: [], limit: 10, offset: 5 }),
         text: () => Promise.resolve(''),
       })
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
-      await client.list({ sort: 'created', limit: 10, cursor: 'xyz', graduated: false })
+      await client.list({ sort: 'created', limit: 10, offset: 5 })
       const url = fetchMock.mock.calls[0][0]
       expect(url).toContain('sort=created')
       expect(url).toContain('limit=10')
-      expect(url).toContain('cursor=xyz')
-      expect(url).toContain('graduated=false')
+      expect(url).toContain('offset=5')
     })
 
     it('should return empty list', async () => {
-      vi.stubGlobal('fetch', mockFetch({ tokens: [] }))
+      vi.stubGlobal('fetch', mockFetch({ tokens: [], limit: 50, offset: 0 }))
       const client = createClient()
       const result = await client.list()
       expect(result.tokens).toHaveLength(0)
-      expect(result.nextCursor).toBeUndefined()
     })
 
     it('should throw on API error', async () => {
@@ -214,15 +202,15 @@ describe('TokensClient', () => {
   describe('buy()', () => {
     const sampleBuyResult = { ptbBytes: 'base64bytes', estimatedGasSui: '0.001', expectedOut: '5000', priceImpactPct: 0.1 }
 
-    it('should buy with required params only', async () => {
+    it('should buy with all required params including minTokensOut', async () => {
       vi.stubGlobal('fetch', mockFetch(sampleBuyResult))
       const client = createClient()
-      const result = await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', buyerAddress: '0xaddr' })
+      const result = await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', minTokensOut: '900000', buyerAddress: '0xaddr' })
       expect(result.ptbBytes).toBe('base64bytes')
       expect(result.estimatedGasSui).toBe('0.001')
     })
 
-    it('should send correct request body', async () => {
+    it('should send required minTokensOut in request body', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
         json: () => Promise.resolve(sampleBuyResult),
@@ -230,12 +218,14 @@ describe('TokensClient', () => {
       })
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
-      await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '5000000', buyerAddress: '0xaddr' })
+      await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '5000000', minTokensOut: '4500000', buyerAddress: '0xaddr' })
+      const url = fetchMock.mock.calls[0][0]
       const body = JSON.parse(fetchMock.mock.calls[0][1].body)
-      expect(body.coin_type).toBe('0xabc::coin::COIN')
-      expect(body.sui_amount_mist).toBe('5000000')
-      expect(body.buyer_address).toBe('0xaddr')
-      expect(body.slippage_bps).toBe(50)
+      expect(url).toContain('/trading/0xabc%3A%3Acoin%3A%3ACOIN/buy')
+      expect(body.suiAmountMist).toBe('5000000')
+      expect(body.minTokensOut).toBe('4500000')
+      expect(body.buyerAddress).toBe('0xaddr')
+      expect(body.slippageBps).toBe(50)
     })
 
     it('should use custom slippage', async () => {
@@ -246,28 +236,15 @@ describe('TokensClient', () => {
       })
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
-      await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', buyerAddress: '0xaddr', slippageBps: 100 })
+      await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', minTokensOut: '900000', buyerAddress: '0xaddr', slippageBps: 100 })
       const body = JSON.parse(fetchMock.mock.calls[0][1].body)
-      expect(body.slippage_bps).toBe(100)
-    })
-
-    it('should pass minTokensOut when provided', async () => {
-      const fetchMock = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(sampleBuyResult),
-        text: () => Promise.resolve(''),
-      })
-      vi.stubGlobal('fetch', fetchMock)
-      const client = createClient()
-      await client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', buyerAddress: '0xaddr', minTokensOut: '4000' })
-      const body = JSON.parse(fetchMock.mock.calls[0][1].body)
-      expect(body.min_tokens_out).toBe('4000')
+      expect(body.slippageBps).toBe(100)
     })
 
     it('should throw on API error', async () => {
       vi.stubGlobal('fetch', mockFetchError(403, 'Forbidden'))
       const client = createClient()
-      await expect(client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', buyerAddress: '0xaddr' })).rejects.toThrow('API error: 403 - Forbidden')
+      await expect(client.buy({ coinType: '0xabc::coin::COIN', suiAmountMist: '1000000', minTokensOut: '900000', buyerAddress: '0xaddr' })).rejects.toThrow('API error: 403 - Forbidden')
     })
   })
 
@@ -281,7 +258,7 @@ describe('TokensClient', () => {
       expect(result.ptbBytes).toBe('base64sell')
     })
 
-    it('should send correct request body', async () => {
+    it('should send correct request body and URL', async () => {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
         json: () => Promise.resolve(sampleSellResult),
@@ -290,11 +267,12 @@ describe('TokensClient', () => {
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
       await client.sell({ coinType: '0xabc::coin::COIN', tokenAmount: '5000', sellerAddress: '0xseller' })
+      const url = fetchMock.mock.calls[0][0]
       const body = JSON.parse(fetchMock.mock.calls[0][1].body)
-      expect(body.coin_type).toBe('0xabc::coin::COIN')
-      expect(body.token_amount).toBe('5000')
-      expect(body.seller_address).toBe('0xseller')
-      expect(body.slippage_bps).toBe(50)
+      expect(url).toContain('/trading/0xabc%3A%3Acoin%3A%3ACOIN/sell')
+      expect(body.tokenAmount).toBe('5000')
+      expect(body.sellerAddress).toBe('0xseller')
+      expect(body.slippageBps).toBe(50)
     })
 
     it('should use custom slippage and minSuiOut', async () => {
@@ -307,8 +285,8 @@ describe('TokensClient', () => {
       const client = createClient()
       await client.sell({ coinType: '0xabc::coin::COIN', tokenAmount: '5000', sellerAddress: '0xseller', slippageBps: 200, minSuiOutMist: '1500' })
       const body = JSON.parse(fetchMock.mock.calls[0][1].body)
-      expect(body.slippage_bps).toBe(200)
-      expect(body.min_sui_out_mist).toBe('1500')
+      expect(body.slippageBps).toBe(200)
+      expect(body.minSuiOutMist).toBe('1500')
     })
 
     it('should throw on API error', async () => {
@@ -318,18 +296,122 @@ describe('TokensClient', () => {
     })
   })
 
-  describe('create()', () => {
-    const sampleCreateResult = {
-      ptb: { ptbBytes: 'create_ptb', estimatedGasSui: '0.01', expectedOut: '0', priceImpactPct: 0 },
-      tokenMetadata: sampleToken,
+  describe('getCreationInfo()', () => {
+    const sampleInfo = {
+      creationFeeSui: '0.5',
+      creationFeeMist: '500000000',
+      endpoints: { preparePublish: 'POST /api/tokens/prepare-publish', confirmCreate: 'POST /api/tokens/confirm-create' },
+      note: 'Use a two-step process...',
     }
 
-    it('should create with required params only', async () => {
+    it('should fetch creation info', async () => {
+      vi.stubGlobal('fetch', mockFetch(sampleInfo))
+      const client = createClient()
+      const result = await client.getCreationInfo()
+      expect(result.creationFeeSui).toBe('0.5')
+      expect(result.creationFeeMist).toBe('500000000')
+      expect(result.endpoints.preparePublish).toBeDefined()
+    })
+  })
+
+  describe('preparePublish()', () => {
+    const samplePrepare = {
+      publishTxBytes: '0xabc',
+      metadataBlobId: 'blob123',
+      creationFeeMist: '500000000',
+      estimatedGasSui: '0.01',
+      steps: ['Step 1', 'Step 2'],
+      otwModuleName: 'my_token_MODULE',
+      otwName: 'MY_TOKEN',
+    }
+
+    it('should prepare publish with required params', async () => {
+      vi.stubGlobal('fetch', mockFetch(samplePrepare))
+      const client = createClient()
+      const result = await client.preparePublish({ name: 'My Token', symbol: 'MTK', creatorAddress: '0xcreator' })
+      expect(result.publishTxBytes).toBe('0xabc')
+      expect(result.otwModuleName).toBe('my_token_MODULE')
+    })
+
+    it('should send optional fields', async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve(samplePrepare),
+        text: () => Promise.resolve(''),
+      })
+      vi.stubGlobal('fetch', fetchMock)
+      const client = createClient()
+      await client.preparePublish({ name: 'My Token', symbol: 'MTK', description: 'desc', creatorAddress: '0xcreator', imageBlobId: 'blob123' })
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body)
+      expect(body.name).toBe('My Token')
+      expect(body.symbol).toBe('MTK')
+      expect(body.description).toBe('desc')
+      expect(body.creatorAddress).toBe('0xcreator')
+      expect(body.imageBlobId).toBe('blob123')
+    })
+  })
+
+  describe('confirmCreate()', () => {
+    const sampleConfirm = {
+      token: sampleToken,
+      creationTxHash: '0xconfirm_tx',
+    }
+
+    it('should confirm creation and return token', async () => {
+      vi.stubGlobal('fetch', mockFetch(sampleConfirm))
+      const client = createClient()
+      const result = await client.confirmCreate({
+        name: 'My Token',
+        symbol: 'MTK',
+        creatorAddress: '0xcreator',
+        publishedPackageId: '0xpkg',
+        treasuryCapObjectId: '0xtcap',
+        coinMetadataObjectId: '0xmet',
+      })
+      expect(result.token.name).toBe('Test Token')
+      expect(result.creationTxHash).toBe('0xconfirm_tx')
+    })
+
+    it('should send all fields to backend', async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve(sampleConfirm),
+        text: () => Promise.resolve(''),
+      })
+      vi.stubGlobal('fetch', fetchMock)
+      const client = createClient()
+      await client.confirmCreate({
+        name: 'My Token',
+        symbol: 'MTK',
+        description: 'desc',
+        creatorAddress: '0xcreator',
+        publishedPackageId: '0xpkg',
+        treasuryCapObjectId: '0xtcap',
+        coinMetadataObjectId: '0xmet',
+        imageBlobId: 'blob123',
+      })
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body)
+      expect(body.name).toBe('My Token')
+      expect(body.publishedPackageId).toBe('0xpkg')
+      expect(body.treasuryCapObjectId).toBe('0xtcap')
+      expect(body.coinMetadataObjectId).toBe('0xmet')
+    })
+  })
+
+  describe('create()', () => {
+    const sampleCreateResult = {
+      creationFeeSui: '0.5',
+      creationFeeMist: '500000000',
+      endpoints: { preparePublish: 'POST /api/tokens/prepare-publish', confirmCreate: 'POST /api/tokens/confirm-create' },
+      note: 'Use a two-step process...',
+    }
+
+    it('should return creation fee info', async () => {
       vi.stubGlobal('fetch', mockFetch(sampleCreateResult))
       const client = createClient()
-      const result = await client.create({ name: 'New Token', symbol: 'NEW' })
-      expect(result.ptb.ptbBytes).toBe('create_ptb')
-      expect(result.tokenMetadata.name).toBe('Test Token')
+      const result = await client.create({ name: 'New Token', symbol: 'NEW', creatorAddress: '0xcreator' })
+      expect(result.creationFeeSui).toBe('0.5')
+      expect(result.endpoints.preparePublish).toBeDefined()
     })
 
     it('should send all optional fields', async () => {
@@ -344,7 +426,8 @@ describe('TokensClient', () => {
         name: 'Full Token',
         symbol: 'FULL',
         description: 'A fully described token',
-        iconBlobId: 'blob123',
+        creatorAddress: '0xcreator',
+        imageBlobId: 'blob123',
         twitter: '@token',
         telegram: 't.me/token',
         website: 'https://token.xyz',
@@ -353,7 +436,8 @@ describe('TokensClient', () => {
       expect(body.name).toBe('Full Token')
       expect(body.symbol).toBe('FULL')
       expect(body.description).toBe('A fully described token')
-      expect(body.icon_blob_id).toBe('blob123')
+      expect(body.creatorAddress).toBe('0xcreator')
+      expect(body.imageBlobId).toBe('blob123')
       expect(body.twitter).toBe('@token')
       expect(body.telegram).toBe('t.me/token')
       expect(body.website).toBe('https://token.xyz')
@@ -367,7 +451,7 @@ describe('TokensClient', () => {
       })
       vi.stubGlobal('fetch', fetchMock)
       const client = createClient()
-      await client.create({ name: 'No Desc', symbol: 'ND' })
+      await client.create({ name: 'No Desc', symbol: 'ND', creatorAddress: '0xcreator' })
       const body = JSON.parse(fetchMock.mock.calls[0][1].body)
       expect(body.description).toBe('')
     })
@@ -375,7 +459,7 @@ describe('TokensClient', () => {
     it('should throw on API error', async () => {
       vi.stubGlobal('fetch', mockFetchError(409, 'Token already exists'))
       const client = createClient()
-      await expect(client.create({ name: 'Dup', symbol: 'DUP' })).rejects.toThrow('API error: 409 - Token already exists')
+      await expect(client.create({ name: 'Dup', symbol: 'DUP', creatorAddress: '0xcreator' })).rejects.toThrow('API error: 409 - Token already exists')
     })
   })
 })

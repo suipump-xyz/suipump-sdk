@@ -284,6 +284,86 @@ describe('StreamClient', () => {
     })
   })
 
+  describe('offChatMessage()', () => {
+    it('should remove chat_message handler', () => {
+      const client = createClient()
+      const handler = vi.fn()
+      client.onChatMessage(handler)
+      client.offChatMessage(handler)
+      vi.advanceTimersToNextTimer()
+
+      const ws = (client as any).ws as MockWebSocket
+      if (ws && ws._receive) {
+        ws._receive(JSON.stringify({
+          event: 'chat_message',
+          coinType: '0xc',
+          sender: '0xs',
+          content: 'hello',
+          ts: 1,
+        }))
+      }
+
+      expect(handler).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('offKothUpdate()', () => {
+    it('should remove koth_update handler', () => {
+      const client = createClient()
+      const handler = vi.fn()
+      client.onKothUpdate(handler)
+      client.offKothUpdate(handler)
+      vi.advanceTimersToNextTimer()
+
+      const ws = (client as any).ws as MockWebSocket
+      if (ws && ws._receive) {
+        ws._receive(JSON.stringify({
+          event: 'koth_update',
+          coinType: '0xc',
+          name: 'K',
+          symbol: 'K',
+          volumeSui: '100',
+          priceMist: '10',
+          marketCapSui: '500',
+          holderCount: 10,
+          lastUpdated: '2026-01-01T00:00:00Z',
+          graduated: false,
+          ts: 1,
+        }))
+      }
+
+      expect(handler).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('offReputationUpdate()', () => {
+    it('should remove reputation_update handler', () => {
+      const client = createClient()
+      const handler = vi.fn()
+      client.onReputationUpdate(handler)
+      client.offReputationUpdate(handler)
+      vi.advanceTimersToNextTimer()
+
+      const ws = (client as any).ws as MockWebSocket
+      if (ws && ws._receive) {
+        ws._receive(JSON.stringify({
+          event: 'reputation_update',
+          address: '0xa',
+          score: 100,
+          tier: 'gold',
+          tokensCreated: 5,
+          tokensGraduated: 2,
+          totalVolumeMist: '1000',
+          earlySellFlags: 0,
+          lastUpdated: '2026-01-01T00:00:00Z',
+          ts: 1,
+        }))
+      }
+
+      expect(handler).not.toHaveBeenCalled()
+    })
+  })
+
   describe('connect()', () => {
     it('should connect and return this for chaining', () => {
       const client = createClient()
@@ -392,6 +472,83 @@ describe('StreamClient', () => {
     })
   })
 
+  describe('onChatMessage()', () => {
+    it('should register chat_message handler and route events', () => {
+      const client = createClient()
+      const handler = vi.fn()
+      client.onChatMessage(handler)
+      vi.advanceTimersToNextTimer()
+      expect(client.isConnected()).toBe(true)
+
+      const ws = (client as any).ws as MockWebSocket
+      ws._receive(JSON.stringify({
+        event: 'chat_message',
+        coinType: '0xabc::coin::COIN',
+        sender: '0xsender',
+        content: 'hello',
+        ts: 1234567890,
+      }))
+
+      expect(handler).toHaveBeenCalledTimes(1)
+      expect(handler.mock.calls[0][0].event).toBe('chat_message')
+    })
+  })
+
+  describe('onKothUpdate()', () => {
+    it('should register koth_update handler and route events', () => {
+      const client = createClient()
+      const handler = vi.fn()
+      client.onKothUpdate(handler)
+      vi.advanceTimersToNextTimer()
+      expect(client.isConnected()).toBe(true)
+
+      const ws = (client as any).ws as MockWebSocket
+      ws._receive(JSON.stringify({
+        event: 'koth_update',
+        coinType: '0xabc::coin::COIN',
+        name: 'King',
+        symbol: 'KOTH',
+        volumeSui: '100000',
+        priceMist: '10',
+        marketCapSui: '50000',
+        holderCount: 100,
+        lastUpdated: '2026-01-01T00:00:00Z',
+        graduated: false,
+        ts: 1234567890,
+      }))
+
+      expect(handler).toHaveBeenCalledTimes(1)
+      expect(handler.mock.calls[0][0].event).toBe('koth_update')
+    })
+  })
+
+  describe('onReputationUpdate()', () => {
+    it('should register reputation_update handler and route events', () => {
+      const client = createClient()
+      const handler = vi.fn()
+      client.onReputationUpdate(handler)
+      vi.advanceTimersToNextTimer()
+      expect(client.isConnected()).toBe(true)
+
+      const ws = (client as any).ws as MockWebSocket
+      ws._receive(JSON.stringify({
+        event: 'reputation_update',
+        address: '0xcreator',
+        score: 500,
+        tier: 'gold',
+        tokensCreated: 5,
+        tokensGraduated: 2,
+        totalVolumeMist: '1000000000',
+        earlySellFlags: 0,
+        lastUpdated: '2026-01-01T00:00:00Z',
+        ts: 1234567890,
+      }))
+
+      expect(handler).toHaveBeenCalledTimes(1)
+      expect(handler.mock.calls[0][0].event).toBe('reputation_update')
+    })
+  })
+
   describe('method chaining', () => {
     it('should support chaining on* methods', () => {
       const client = createClient()
@@ -399,6 +556,9 @@ describe('StreamClient', () => {
         .onNewToken(vi.fn())
         .onTrade(vi.fn())
         .onGraduated(vi.fn())
+        .onChatMessage(vi.fn())
+        .onKothUpdate(vi.fn())
+        .onReputationUpdate(vi.fn())
       expect(result).toBe(client)
     })
 
@@ -406,8 +566,17 @@ describe('StreamClient', () => {
       const h1 = vi.fn()
       const h2 = vi.fn()
       const h3 = vi.fn()
+      const h4 = vi.fn()
+      const h5 = vi.fn()
+      const h6 = vi.fn()
       const client = createClient()
-      client.onNewToken(h1).onTrade(h2).onGraduated(h3)
+      client
+        .onNewToken(h1)
+        .onTrade(h2)
+        .onGraduated(h3)
+        .onChatMessage(h4)
+        .onKothUpdate(h5)
+        .onReputationUpdate(h6)
       const result = client
         .offNewToken(h1)
         .offTrade(h2)

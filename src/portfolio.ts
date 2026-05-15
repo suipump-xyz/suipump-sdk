@@ -1,34 +1,20 @@
-// sdk/src/portfolio.ts - Portfolio operations
-
 import type { ClientWithCoreApi } from '@mysten/sui/client'
 import type { SuiPumpConfig } from './client.js'
-import type { TradeRecord, MistAmount } from './types.js'
+import type { TradeRecord, TokenMetadata, MistAmount, SuiAddress } from './types.js'
 
 export interface PortfolioHolding {
-  coinType: string
-  tokenName: string
-  tokenSymbol: string
+  token: TokenMetadata
   balance: string
-  valueMist: MistAmount
-  pnlPct: number
-  avgBuyPriceMist: MistAmount
-  currentPriceMist: MistAmount
+  valueSui: string
 }
 
-export interface PortfolioSummary {
-  holdings: PortfolioHolding[]
-  totalValueMist: MistAmount
-  totalPnlPct: number
-  totalInvestedMist: MistAmount
-}
-
-interface TradePosition {
-  coinType: string
-  totalBoughtMist: MistAmount
-  totalSoldMist: MistAmount
-  totalTokens: string
-  tradeCount: number
-  avgBuyPrice: MistAmount
+export interface PortfolioOverview {
+  address: SuiAddress
+  suiBalance: string
+  portfolioValueSui: string
+  holdingsCount: number
+  tradesTodayCount: number
+  totalTrades: number
 }
 
 export class PortfolioClient {
@@ -65,29 +51,30 @@ export class PortfolioClient {
     return response.json() as Promise<T>
   }
 
-  async getHoldings(address: string): Promise<PortfolioHolding[]> {
-    const result = await this.fetch<{ holdings: PortfolioHolding[] }>(
+  async getHoldings(address: string): Promise<{
+    address: SuiAddress
+    holdings: PortfolioHolding[]
+  }> {
+    return this.fetch<{ address: SuiAddress; holdings: PortfolioHolding[] }>(
       `/portfolio/${address}/holdings`
     )
-    return result.holdings
   }
 
-  async getTrades(address: string, params?: { coinType?: string; limit?: number; cursor?: string }): Promise<{
+  async getTrades(address: string, params?: { limit?: number }): Promise<{
+    address: SuiAddress
     trades: TradeRecord[]
-    nextCursor?: string
+    limit: number
   }> {
     const query = new URLSearchParams()
-    if (params?.coinType) query.set('coin_type', params.coinType)
     if (params?.limit) query.set('limit', String(params.limit))
-    if (params?.cursor) query.set('cursor', params.cursor)
 
     const queryString = query.toString()
-    return this.fetch<{ trades: TradeRecord[]; nextCursor?: string }>(
+    return this.fetch<{ address: SuiAddress; trades: TradeRecord[]; limit: number }>(
       `/portfolio/${address}/trades${queryString ? `?${queryString}` : ''}`
     )
   }
 
-  async getPnL(address: string): Promise<PortfolioSummary> {
-    return this.fetch<PortfolioSummary>(`/portfolio/${address}/pnl`)
+  async getOverview(address: string): Promise<PortfolioOverview> {
+    return this.fetch<PortfolioOverview>(`/portfolio/${address}/overview`)
   }
 }

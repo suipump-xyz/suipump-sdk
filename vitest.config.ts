@@ -14,6 +14,7 @@ export default defineConfig({
         statements: 95,
       },
       include: ['src/**/*.ts'],
+      exclude: ['src/types.ts'],
     },
   },
 })

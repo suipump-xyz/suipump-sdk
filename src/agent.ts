@@ -1,5 +1,3 @@
-// sdk/src/agent.ts - Agent operations
-
 import type { ClientWithCoreApi } from '@mysten/sui/client'
 import type { SuiPumpConfig } from './client.js'
 import type { PTBResult } from './types.js'
@@ -8,14 +6,15 @@ export interface BatchBuyParams {
   buys: Array<{
     coinType: string
     suiAmountMist: string
+    minTokensOut: string
     slippageBps?: number
   }>
   buyerAddress: string
 }
 
 export interface CopySubscribeParams {
-  targetWallet: string
-  subscriberAddress: string
+  targetTrader: string
+  subscriber: string
   maxSuiPerTrade?: string
   ratio?: number
 }
@@ -58,53 +57,52 @@ export class AgentClient {
     const { buys, buyerAddress } = params
 
     const formattedBuys = buys.map((buy) => ({
-      coin_type: buy.coinType,
-      sui_amount_mist: buy.suiAmountMist,
-      slippage_bps: buy.slippageBps ?? 50,
+      coinType: buy.coinType,
+      suiAmountMist: buy.suiAmountMist,
+      minTokensOut: buy.minTokensOut,
+      slippageBps: buy.slippageBps ?? 50,
     }))
 
     return this.fetch<PTBResult>('/agent/batch-buy', {
       buys: formattedBuys,
-      buyer_address: buyerAddress,
+      buyerAddress,
     })
   }
 
   async copySubscribe(params: CopySubscribeParams): Promise<{
     subscriptionId: string
-    targetWallet: string
-    subscriberAddress: string
+    targetTrader: string
+    subscriber: string
     maxSuiPerTrade: string
     ratio: number
-    status: 'active' | 'paused'
+    status: string
+    message: string
   }> {
     return this.fetch<{
       subscriptionId: string
-      targetWallet: string
-      subscriberAddress: string
+      targetTrader: string
+      subscriber: string
       maxSuiPerTrade: string
       ratio: number
-      status: 'active' | 'paused'
+      status: string
+      message: string
     }>('/agent/copy-subscribe', {
-      target_wallet: params.targetWallet,
-      subscriber_address: params.subscriberAddress,
-      max_sui_per_trade: params.maxSuiPerTrade ?? '1000000000',
-      ratio: params.ratio ?? 0.1,
+      subscriber: params.subscriber,
+      targetTrader: params.targetTrader,
+      maxSuiPerTrade: params.maxSuiPerTrade ?? '1000000000',
+      ratio: params.ratio ?? 100,
     })
   }
 
-  async getSubscriptions(subscriberAddress: string): Promise<Array<{
+  async unsubscribe(subscriptionId: string): Promise<{
     subscriptionId: string
-    targetWallet: string
-    status: 'active' | 'paused'
-  }>> {
-    return this.fetch<Array<{
+    status: string
+    message: string
+  }> {
+    return this.fetch<{
       subscriptionId: string
-      targetWallet: string
-      status: 'active' | 'paused'
-    }>>(`/agent/subscriptions/${subscriberAddress}`)
-  }
-
-  async unsubscribe(subscriptionId: string): Promise<{ success: boolean }> {
-    return this.fetch<{ success: boolean }>(`/agent/unsubscribe/${subscriptionId}`, {})
+      status: string
+      message: string
+    }>('/agent/copy-unsubscribe', { subscriptionId })
   }
 }

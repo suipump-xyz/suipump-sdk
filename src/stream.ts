@@ -1,37 +1,21 @@
-// sdk/src/stream.ts - WebSocket stream client
+import type { TokenMetadata, TradeEvent, ChatMessage, KothData, ReputationData, CoinType } from './types.js'
 
-export interface NewTokenEvent {
-  event: 'new_token'
-  coinType: string
-  name: string
-  symbol: string
-  creator: string
-  creatorSuiName?: string
-  walrusBlobId?: string
-  ts: number
-}
+export type WSEvent =
+  | { event: 'new_token'; data: TokenMetadata; ts: number }
+  | { event: 'trade'; data: TradeEvent; ts: number }
+  | { event: 'graduated'; data: { coinType: CoinType }; ts: number }
+  | { event: 'chat_message'; data: ChatMessage; ts: number }
+  | { event: 'koth_update'; data: KothData; ts: number }
+  | { event: 'reputation_update'; data: ReputationData; ts: number }
 
-export interface TradeEvent {
-  event: 'trade'
-  coinType: string
-  tradeType: 'buy' | 'sell'
-  suiAmount: string
-  tokenAmount: string
-  trader: string
-  priceMist: string
-  curveProgress: number
-  ts: number
-}
+export type StreamEvent = WSEvent
 
-export interface GraduationEvent {
-  event: 'graduated'
-  coinType: string
-  cetusPoolId: string
-  deepbookPoolId?: string
-  ts: number
-}
-
-export type StreamEvent = NewTokenEvent | TradeEvent | GraduationEvent
+export type NewTokenEvent = Extract<StreamEvent, { event: 'new_token' }>
+export type TradeStreamEvent = Extract<StreamEvent, { event: 'trade' }>
+export type GraduationEvent = Extract<StreamEvent, { event: 'graduated' }>
+export type ChatMessageEvent = Extract<StreamEvent, { event: 'chat_message' }>
+export type KothUpdateEvent = Extract<StreamEvent, { event: 'koth_update' }>
+export type ReputationUpdateEvent = Extract<StreamEvent, { event: 'reputation_update' }>
 
 type GenericHandler = (event: StreamEvent) => void
 
@@ -92,7 +76,7 @@ export class StreamClient {
     }, this.reconnectDelay * this.reconnectAttempts)
   }
 
-  onNewToken(handler: (event: NewTokenEvent) => void): this {
+  onNewToken(handler: (event: StreamEvent & { event: 'new_token' }) => void): this {
     this.handlers.push({ event: 'new_token', handler: handler as GenericHandler })
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
       this.ensureConnection()
@@ -100,7 +84,7 @@ export class StreamClient {
     return this
   }
 
-  onTrade(handler: (event: TradeEvent) => void): this {
+  onTrade(handler: (event: StreamEvent & { event: 'trade' }) => void): this {
     this.handlers.push({ event: 'trade', handler: handler as GenericHandler })
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
       this.ensureConnection()
@@ -108,7 +92,7 @@ export class StreamClient {
     return this
   }
 
-  onGraduated(handler: (event: GraduationEvent) => void): this {
+  onGraduated(handler: (event: StreamEvent & { event: 'graduated' }) => void): this {
     this.handlers.push({ event: 'graduated', handler: handler as GenericHandler })
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
       this.ensureConnection()
@@ -116,7 +100,31 @@ export class StreamClient {
     return this
   }
 
-  offNewToken(handler: (event: NewTokenEvent) => void): this {
+  onChatMessage(handler: (event: StreamEvent & { event: 'chat_message' }) => void): this {
+    this.handlers.push({ event: 'chat_message', handler: handler as GenericHandler })
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+      this.ensureConnection()
+    }
+    return this
+  }
+
+  onKothUpdate(handler: (event: StreamEvent & { event: 'koth_update' }) => void): this {
+    this.handlers.push({ event: 'koth_update', handler: handler as GenericHandler })
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+      this.ensureConnection()
+    }
+    return this
+  }
+
+  onReputationUpdate(handler: (event: StreamEvent & { event: 'reputation_update' }) => void): this {
+    this.handlers.push({ event: 'reputation_update', handler: handler as GenericHandler })
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+      this.ensureConnection()
+    }
+    return this
+  }
+
+  offNewToken(handler: (event: StreamEvent & { event: 'new_token' }) => void): this {
     this.handlers = this.handlers.filter(
       (h) => !(h.event === 'new_token' && h.handler === handler)
     )
@@ -124,7 +132,7 @@ export class StreamClient {
     return this
   }
 
-  offTrade(handler: (event: TradeEvent) => void): this {
+  offTrade(handler: (event: StreamEvent & { event: 'trade' }) => void): this {
     this.handlers = this.handlers.filter(
       (h) => !(h.event === 'trade' && h.handler === handler)
     )
@@ -132,9 +140,33 @@ export class StreamClient {
     return this
   }
 
-  offGraduated(handler: (event: GraduationEvent) => void): this {
+  offGraduated(handler: (event: StreamEvent & { event: 'graduated' }) => void): this {
     this.handlers = this.handlers.filter(
       (h) => !(h.event === 'graduated' && h.handler === handler)
+    )
+    this.disconnectIfNoHandlers()
+    return this
+  }
+
+  offChatMessage(handler: (event: StreamEvent & { event: 'chat_message' }) => void): this {
+    this.handlers = this.handlers.filter(
+      (h) => !(h.event === 'chat_message' && h.handler === handler)
+    )
+    this.disconnectIfNoHandlers()
+    return this
+  }
+
+  offKothUpdate(handler: (event: StreamEvent & { event: 'koth_update' }) => void): this {
+    this.handlers = this.handlers.filter(
+      (h) => !(h.event === 'koth_update' && h.handler === handler)
+    )
+    this.disconnectIfNoHandlers()
+    return this
+  }
+
+  offReputationUpdate(handler: (event: StreamEvent & { event: 'reputation_update' }) => void): this {
+    this.handlers = this.handlers.filter(
+      (h) => !(h.event === 'reputation_update' && h.handler === handler)
     )
     this.disconnectIfNoHandlers()
     return this

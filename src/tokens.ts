@@ -1,5 +1,3 @@
-// sdk/src/tokens.ts - Token operations
-
 import type { ClientWithCoreApi } from '@mysten/sui/client'
 import type { SuiPumpConfig } from './client.js'
 import type { TokenMetadata, PTBResult } from './types.js'
@@ -7,7 +5,7 @@ import type { TokenMetadata, PTBResult } from './types.js'
 export interface BuyParams {
   coinType: string
   suiAmountMist: string
-  minTokensOut?: string
+  minTokensOut: string
   buyerAddress: string
   slippageBps?: number
 }
@@ -24,7 +22,8 @@ export interface CreateTokenParams {
   name: string
   symbol: string
   description?: string
-  iconBlobId?: string
+  creatorAddress: string
+  imageBlobId?: string
   twitter?: string
   telegram?: string
   website?: string
@@ -33,7 +32,7 @@ export interface CreateTokenParams {
 export interface ListTokensParams {
   sort?: 'volume' | 'created' | 'market_cap'
   limit?: number
-  cursor?: string
+  offset?: number
   graduated?: boolean
 }
 
@@ -77,51 +76,137 @@ export class TokensClient {
   }
 
   async get(coinType: string): Promise<TokenMetadata> {
-    return this.fetch<TokenMetadata>(`/tokens/${encodeURIComponent(coinType)}`)
+    const result = await this.fetch<{ token: TokenMetadata }>(`/tokens/${encodeURIComponent(coinType)}`)
+    return result.token
   }
 
-  async list(params?: ListTokensParams): Promise<{ tokens: TokenMetadata[]; nextCursor?: string }> {
+  async list(params?: ListTokensParams): Promise<{ tokens: TokenMetadata[]; limit: number; offset: number }> {
+    if (params?.graduated) {
+      const query = new URLSearchParams()
+      if (params?.limit) query.set('limit', String(params.limit))
+      if (params?.offset !== undefined) query.set('offset', String(params.offset))
+      const queryString = query.toString()
+      return this.fetch<{ tokens: TokenMetadata[]; limit: number; offset: number }>(
+        `/tokens/graduated${queryString ? `?${queryString}` : ''}`
+      )
+    }
+
     const query = new URLSearchParams()
     if (params?.sort) query.set('sort', params.sort)
     if (params?.limit) query.set('limit', String(params.limit))
-    if (params?.cursor) query.set('cursor', params.cursor)
-    if (params?.graduated !== undefined) query.set('graduated', String(params.graduated))
+    if (params?.offset !== undefined) query.set('offset', String(params.offset))
 
     const queryString = query.toString()
-    return this.fetch<{ tokens: TokenMetadata[]; nextCursor?: string }>(
+    return this.fetch<{ tokens: TokenMetadata[]; limit: number; offset: number }>(
       `/tokens${queryString ? `?${queryString}` : ''}`
     )
   }
 
   async buy(params: BuyParams): Promise<PTBResult> {
-    return this.fetch<PTBResult>('/tokens/buy', {
-      coin_type: params.coinType,
-      sui_amount_mist: params.suiAmountMist,
-      min_tokens_out: params.minTokensOut,
-      buyer_address: params.buyerAddress,
-      slippage_bps: params.slippageBps ?? 50,
+    return this.fetch<PTBResult>(`/trading/${encodeURIComponent(params.coinType)}/buy`, {
+      suiAmountMist: params.suiAmountMist,
+      minTokensOut: params.minTokensOut,
+      buyerAddress: params.buyerAddress,
+      slippageBps: params.slippageBps ?? 50,
     })
   }
 
   async sell(params: SellParams): Promise<PTBResult> {
-    return this.fetch<PTBResult>('/tokens/sell', {
-      coin_type: params.coinType,
-      token_amount: params.tokenAmount,
-      min_sui_out_mist: params.minSuiOutMist,
-      seller_address: params.sellerAddress,
-      slippage_bps: params.slippageBps ?? 50,
+    return this.fetch<PTBResult>(`/trading/${encodeURIComponent(params.coinType)}/sell`, {
+      tokenAmount: params.tokenAmount,
+      minSuiOutMist: params.minSuiOutMist,
+      sellerAddress: params.sellerAddress,
+      slippageBps: params.slippageBps ?? 50,
     })
   }
 
-  async create(params: CreateTokenParams): Promise<{ ptb: PTBResult; tokenMetadata: TokenMetadata }> {
-    return this.fetch<{ ptb: PTBResult; tokenMetadata: TokenMetadata }>('/tokens/create', {
+  async getCreationInfo(): Promise<{
+    creationFeeSui: string
+    creationFeeMist: string
+    endpoints: { preparePublish: string; confirmCreate: string }
+    note: string
+  }> {
+    return this.fetch<{
+      creationFeeSui: string
+      creationFeeMist: string
+      endpoints: { preparePublish: string; confirmCreate: string }
+      note: string
+    }>('/tokens/create', {
+      name: '',
+      symbol: '',
+      creatorAddress: '',
+    })
+  }
+
+  async preparePublish(params: CreateTokenParams): Promise<{
+    publishTxBytes: string
+    metadataBlobId: string
+    creationFeeMist: string
+    estimatedGasSui: string
+    steps: string[]
+    otwModuleName: string
+    otwName: string
+  }> {
+    return this.fetch<{
+      publishTxBytes: string
+      metadataBlobId: string
+      creationFeeMist: string
+      estimatedGasSui: string
+      steps: string[]
+      otwModuleName: string
+      otwName: string
+    }>('/tokens/prepare-publish', {
       name: params.name,
       symbol: params.symbol,
       description: params.description ?? '',
-      icon_blob_id: params.iconBlobId,
+      creatorAddress: params.creatorAddress,
+      imageBlobId: params.imageBlobId,
+    })
+  }
+
+  async confirmCreate(params: CreateTokenParams & {
+    publishedPackageId: string
+    treasuryCapObjectId: string
+    coinMetadataObjectId: string
+  }): Promise<{
+    token: TokenMetadata
+    creationTxHash: string
+  }> {
+    return this.fetch<{
+      token: TokenMetadata
+      creationTxHash: string
+    }>('/tokens/confirm-create', {
+      name: params.name,
+      symbol: params.symbol,
+      description: params.description ?? '',
+      creatorAddress: params.creatorAddress,
+      publishedPackageId: params.publishedPackageId,
+      treasuryCapObjectId: params.treasuryCapObjectId,
+      coinMetadataObjectId: params.coinMetadataObjectId,
+      imageBlobId: params.imageBlobId,
+    })
+  }
+
+  async create(params: CreateTokenParams): Promise<{
+    creationFeeSui: string
+    creationFeeMist: string
+    endpoints: { preparePublish: string; confirmCreate: string }
+    note: string
+  }> {
+    return this.fetch<{
+      creationFeeSui: string
+      creationFeeMist: string
+      endpoints: { preparePublish: string; confirmCreate: string }
+      note: string
+    }>('/tokens/create', {
+      name: params.name,
+      symbol: params.symbol,
+      description: params.description ?? '',
+      creatorAddress: params.creatorAddress,
       twitter: params.twitter,
       telegram: params.telegram,
       website: params.website,
+      imageBlobId: params.imageBlobId,
     })
   }
 }
