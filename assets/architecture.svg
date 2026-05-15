@@ -1,199 +1,114 @@
-<svg width="1200" height="560" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#050508"/>
-      <stop offset="50%" stop-color="#0A0A0F"/>
-      <stop offset="100%" stop-color="#050508"/>
-    </linearGradient>
-    <linearGradient id="layer-front" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A1628"/>
-      <stop offset="100%" stop-color="#0D1020"/>
-    </linearGradient>
-    <linearGradient id="layer-sdk" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A1A12"/>
-      <stop offset="100%" stop-color="#0D1015"/>
-    </linearGradient>
-    <linearGradient id="layer-backend" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1A0A28"/>
-      <stop offset="100%" stop-color="#0F0A18"/>
-    </linearGradient>
-    <linearGradient id="layer-chain" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0A1A1A"/>
-      <stop offset="100%" stop-color="#080E0E"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10B981"/>
-      <stop offset="100%" stop-color="#34D399"/>
-    </linearGradient>
-  </defs>
+<svg width="1000" height="480" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="480" fill="#0A0A0F"/>
+  <rect x="0" y="0" width="1000" height="3" fill="#10B981"/>
 
-  <!-- Background -->
-  <rect width="1200" height="560" fill="url(#bg)"/>
-  <rect x="0" y="0" width="1200" height="2.5" fill="url(#accent)" opacity="0.6"/>
+  <text x="500" y="36" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#10B981">System Architecture</text>
+  <text x="500" y="54" text-anchor="middle" font-family="monospace" font-size="11" fill="#4A5568">Frontend → SDK → Backend → Sui Blockchain</text>
 
-  <!-- Title -->
-  <text x="600" y="38" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="22" font-weight="700" fill="#10B981" letter-spacing="1">🏗️ System Architecture</text>
-  <text x="600" y="58" text-anchor="middle" font-family="'SF Mono','Fira Code',monospace" font-size="11" fill="#4A5568">End-to-end data flow · SDK → API → Blockchain</text>
+  <!-- Layer 1: Frontend -->
+  <rect x="30" y="76" width="940" height="86" rx="6" fill="#0D1520" stroke="#1A2744" stroke-width="1"/>
+  <rect x="30" y="76" width="940" height="3" fill="#3B82F6"/>
+  <text x="46" y="100" font-family="sans-serif" font-size="13" font-weight="600" fill="#60A5FA">Frontend</text>
 
-  <!-- Inter-layer arrows with SVG animate -->
-  <g>
-    <line x1="600" y1="173" x2="600" y2="190" stroke="#3B82F6" stroke-width="2" stroke-dasharray="8 6" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="0.8s" repeatCount="indefinite"/>
-    </line>
-    <polygon points="596,188 600,196 604,188" fill="#3B82F6"/>
-  </g>
-  <g>
-    <line x1="600" y1="286" x2="600" y2="303" stroke="#10B981" stroke-width="2" stroke-dasharray="8 6" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="0.8s" repeatCount="indefinite"/>
-    </line>
-    <polygon points="596,301 600,309 604,301" fill="#10B981"/>
-  </g>
-  <g>
-    <line x1="600" y1="399" x2="600" y2="416" stroke="#A78BFA" stroke-width="2" stroke-dasharray="8 6" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="0.8s" repeatCount="indefinite"/>
-    </line>
-    <polygon points="596,414 600,422 604,414" fill="#A78BFA"/>
-  </g>
+  <rect x="46" y="110" width="170" height="40" rx="4" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
+  <text x="130" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93C5FD">React dApp</text>
+  <text x="130" y="142" text-anchor="middle" font-family="monospace" font-size="9" fill="#3B5A8A">Next.js - Wallet Connector</text>
 
-  <!-- Side flow labels with opacity animation -->
-  <g>
-    <text x="25" y="183" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#60A5FA" opacity="0.6">⬇ REST API
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/>
-    </text>
-  </g>
-  <g>
-    <text x="1170" y="183" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#60A5FA" opacity="0.6">⬆ Events
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" begin="0.6s" repeatCount="indefinite"/>
-    </text>
-  </g>
-  <g>
-    <text x="25" y="296" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#34D399" opacity="0.6">⬇ PTB Bytes
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" begin="1.2s" repeatCount="indefinite"/>
-    </text>
-  </g>
-  <g>
-    <text x="25" y="409" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#C4B5FD" opacity="0.6">⬇ Tx Effects
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" begin="1.8s" repeatCount="indefinite"/>
-    </text>
-  </g>
+  <rect x="232" y="110" width="170" height="40" rx="4" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
+  <text x="316" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93C5FD">CLI / Script</text>
+  <text x="316" y="142" text-anchor="middle" font-family="monospace" font-size="9" fill="#3B5A8A">Automation - Batch Ops</text>
 
-  <!-- LAYER 1: Frontend -->
-  <g transform="translate(40, 75)">
-    <rect x="0" y="0" width="1120" height="100" rx="8" fill="url(#layer-front)" stroke="#1A2744" stroke-width="1"/>
-    <rect x="0" y="0" width="1120" height="2.5" fill="#3B82F6" opacity="0.5"/>
-    <text x="16" y="24" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#60A5FA">🖥️ FRONTEND</text>
+  <rect x="418" y="110" width="170" height="40" rx="4" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
+  <text x="502" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93C5FD">Telegram Bot</text>
+  <text x="502" y="142" text-anchor="middle" font-family="monospace" font-size="9" fill="#3B5A8A">grammY - Trade Alerts</text>
 
-    <rect x="16" y="36" width="180" height="48" rx="6" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
-    <text x="105" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#93C5FD">⚛️ React dApp</text>
-    <text x="105" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" fill="#3B5A8A">Next.js · Wallet Connector</text>
+  <rect x="604" y="110" width="170" height="40" rx="4" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
+  <text x="688" y="128" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#93C5FD">zkLogin</text>
+  <text x="688" y="142" text-anchor="middle" font-family="monospace" font-size="9" fill="#3B5A8A">Enoki - Google Sign-In</text>
 
-    <rect x="216" y="36" width="180" height="48" rx="6" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
-    <text x="305" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#93C5FD">📱 CLI / Script</text>
-    <text x="305" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" fill="#3B5A8A">Automation · Batch Ops</text>
+  <!-- Arrow 1 -->
+  <line x1="500" y1="162" x2="500" y2="174" stroke="#3B82F6" stroke-width="2"/>
+  <polygon points="495,172 500,180 505,172" fill="#3B82F6"/>
 
-    <rect x="416" y="36" width="180" height="48" rx="6" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
-    <text x="505" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#93C5FD">🤖 Telegram Bot</text>
-    <text x="505" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" fill="#3B5A8A">grammY · Trade Alerts</text>
+  <!-- Layer 2: SDK -->
+  <rect x="30" y="182" width="940" height="86" rx="6" fill="#0A1810" stroke="#0A2A1A" stroke-width="1"/>
+  <rect x="30" y="182" width="940" height="3" fill="#10B981"/>
+  <text x="46" y="206" font-family="sans-serif" font-size="13" font-weight="600" fill="#34D399">SDK (8 modules - 19 exported types)</text>
 
-    <rect x="616" y="36" width="180" height="48" rx="6" fill="#0F1D3D" stroke="#1E3A6A" stroke-width="0.8"/>
-    <text x="705" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#93C5FD">🔐 zkLogin</text>
-    <text x="705" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="9" fill="#3B5A8A">Enoki · Google Sign-In</text>
-  </g>
+  <rect x="46" y="216" width="110" height="40" rx="4" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
+  <text x="100" y="234" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6EE7B7">Tokens</text>
+  <text x="100" y="248" text-anchor="middle" font-family="monospace" font-size="8" fill="#2A5A3A">get/list/buy/sell</text>
 
-  <!-- LAYER 2: SDK -->
-  <g transform="translate(40, 188)">
-    <rect x="0" y="0" width="1120" height="100" rx="8" fill="url(#layer-sdk)" stroke="#0A2A1A" stroke-width="1"/>
-    <rect x="0" y="0" width="1120" height="2.5" fill="#10B981" opacity="0.5"/>
-    <text x="16" y="24" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#34D399">📦 SDK</text>
-    <text x="72" y="24" font-family="'SF Mono',monospace" font-size="9" fill="#4A5568">(8 modules · 19 exported types)</text>
+  <rect x="170" y="216" width="110" height="40" rx="4" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
+  <text x="224" y="234" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6EE7B7">Portfolio</text>
+  <text x="224" y="248" text-anchor="middle" font-family="monospace" font-size="8" fill="#2A5A3A">holdings/trades</text>
 
-    <rect x="16" y="36" width="120" height="48" rx="6" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
-    <text x="75" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6EE7B7">🪙 Tokens</text>
-    <text x="75" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">get/list/buy/sell</text>
+  <rect x="294" y="216" width="110" height="40" rx="4" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
+  <text x="348" y="234" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6EE7B7">Agent</text>
+  <text x="348" y="248" text-anchor="middle" font-family="monospace" font-size="8" fill="#2A5A3A">batch/copy-trade</text>
 
-    <rect x="151" y="36" width="120" height="48" rx="6" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
-    <text x="210" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6EE7B7">📊 Portfolio</text>
-    <text x="210" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">holdings/trades</text>
+  <rect x="418" y="216" width="110" height="40" rx="4" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
+  <text x="472" y="234" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6EE7B7">Stream</text>
+  <text x="472" y="248" text-anchor="middle" font-family="monospace" font-size="8" fill="#2A5A3A">WebSocket events</text>
 
-    <rect x="286" y="36" width="120" height="48" rx="6" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
-    <text x="345" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6EE7B7">🤖 Agent</text>
-    <text x="345" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">batch/copy-trade</text>
+  <rect x="542" y="216" width="110" height="40" rx="4" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
+  <text x="596" y="234" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6EE7B7">Media</text>
+  <text x="596" y="248" text-anchor="middle" font-family="monospace" font-size="8" fill="#2A5A3A">Walrus upload</text>
 
-    <rect x="421" y="36" width="120" height="48" rx="6" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
-    <text x="480" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6EE7B7">🌊 Stream</text>
-    <text x="480" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">WebSocket events</text>
+  <rect x="740" y="216" width="140" height="40" rx="4" fill="#0F1F14" stroke="#10B981" stroke-width="0.8"/>
+  <text x="809" y="234" text-anchor="middle" font-family="monospace" font-size="10" fill="#10B981">@suipump/sdk</text>
+  <text x="809" y="248" text-anchor="middle" font-family="monospace" font-size="8" fill="#3A6A4A">SuiGrpcClient wrapper</text>
 
-    <rect x="556" y="36" width="120" height="48" rx="6" fill="#0A1F14" stroke="#0D3D24" stroke-width="0.8"/>
-    <text x="615" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6EE7B7">🖼️ Media</text>
-    <text x="615" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">Walrus upload</text>
+  <!-- Arrow 2 -->
+  <line x1="500" y1="268" x2="500" y2="280" stroke="#10B981" stroke-width="2"/>
+  <polygon points="495,278 500,286 505,278" fill="#10B981"/>
 
-    <rect x="760" y="36" width="160" height="48" rx="6" fill="#0F1F14" stroke="#10B981" stroke-width="0.8"/>
-    <text x="839" y="57" text-anchor="middle" font-family="'SF Mono',monospace" font-size="10" fill="#10B981">@suipump/sdk</text>
-    <text x="839" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#3A6A4A">SuiGrpcClient wrapper</text>
-  </g>
+  <!-- Layer 3: Backend -->
+  <rect x="30" y="288" width="940" height="86" rx="6" fill="#140A20" stroke="#2A0A40" stroke-width="1"/>
+  <rect x="30" y="288" width="940" height="3" fill="#A78BFA"/>
+  <text x="46" y="312" font-family="sans-serif" font-size="13" font-weight="600" fill="#C4B5FD">Backend</text>
 
-  <!-- LAYER 3: Backend -->
-  <g transform="translate(40, 301)">
-    <rect x="0" y="0" width="1120" height="100" rx="8" fill="url(#layer-backend)" stroke="#2A0A40" stroke-width="1"/>
-    <rect x="0" y="0" width="1120" height="2.5" fill="#A78BFA" opacity="0.5"/>
-    <text x="16" y="24" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#C4B5FD">⚙️ BACKEND</text>
+  <rect x="46" y="322" width="140" height="40" rx="4" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
+  <text x="115" y="340" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#C4B5FD">REST API</text>
+  <text x="115" y="354" text-anchor="middle" font-family="monospace" font-size="8" fill="#5A3A7A">Express - Rate-Limited</text>
 
-    <rect x="16" y="36" width="155" height="48" rx="6" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
-    <text x="92" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#C4B5FD">🔌 REST API</text>
-    <text x="92" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A7A">Express · Rate-Limited</text>
+  <rect x="200" y="322" width="140" height="40" rx="4" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
+  <text x="269" y="340" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#C4B5FD">PTB Builder</text>
+  <text x="269" y="354" text-anchor="middle" font-family="monospace" font-size="8" fill="#5A3A7A">Unsigned Transactions</text>
 
-    <rect x="186" y="36" width="155" height="48" rx="6" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
-    <text x="262" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#C4B5FD">📝 PTB Builder</text>
-    <text x="262" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A7A">Unsigned Transactions</text>
+  <rect x="354" y="322" width="140" height="40" rx="4" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
+  <text x="423" y="340" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#C4B5FD">Event Indexer</text>
+  <text x="423" y="354" text-anchor="middle" font-family="monospace" font-size="8" fill="#5A3A7A">gRPC Event Stream</text>
 
-    <rect x="356" y="36" width="155" height="48" rx="6" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
-    <text x="432" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#C4B5FD">🔄 Event Indexer</text>
-    <text x="432" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A7A">gRPC Event Stream</text>
+  <rect x="508" y="322" width="140" height="40" rx="4" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
+  <text x="577" y="340" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#C4B5FD">Stream Server</text>
+  <text x="577" y="354" text-anchor="middle" font-family="monospace" font-size="8" fill="#5A3A7A">WebSocket - Real-time</text>
 
-    <rect x="526" y="36" width="155" height="48" rx="6" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
-    <text x="602" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#C4B5FD">📡 Stream Server</text>
-    <text x="602" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A7A">WebSocket · Real-time</text>
+  <rect x="662" y="322" width="140" height="40" rx="4" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
+  <text x="731" y="340" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#C4B5FD">Grad Watcher</text>
+  <text x="731" y="354" text-anchor="middle" font-family="monospace" font-size="8" fill="#5A3A7A">Cetus Pool Trigger</text>
 
-    <rect x="696" y="36" width="155" height="48" rx="6" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
-    <text x="772" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#C4B5FD">🎓 Grad Watcher</text>
-    <text x="772" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A7A">Cetus Pool Trigger</text>
+  <!-- Arrow 3 -->
+  <line x1="500" y1="374" x2="500" y2="386" stroke="#A78BFA" stroke-width="2"/>
+  <polygon points="495,384 500,392 505,384" fill="#A78BFA"/>
 
-    <rect x="866" y="36" width="155" height="48" rx="6" fill="#1A0828" stroke="#3A1060" stroke-width="0.8"/>
-    <text x="942" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#C4B5FD">⛽ Gas Sponsor</text>
-    <text x="942" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A7A">Enoki / sui-gas-station</text>
-  </g>
+  <!-- Layer 4: Blockchain -->
+  <rect x="30" y="394" width="940" height="72" rx="6" fill="#080E0E" stroke="#0A2A2A" stroke-width="1"/>
+  <rect x="30" y="394" width="940" height="3" fill="#22D3EE"/>
+  <text x="46" y="418" font-family="sans-serif" font-size="13" font-weight="600" fill="#22D3EE">Sui Blockchain and Ecosystem</text>
 
-  <!-- LAYER 4: Blockchain -->
-  <g transform="translate(40, 414)">
-    <rect x="0" y="0" width="1120" height="116" rx="8" fill="url(#layer-chain)" stroke="#0A2A2A" stroke-width="1"/>
-    <rect x="0" y="0" width="1120" height="2.5" fill="#22D3EE" opacity="0.5"/>
-    <text x="16" y="24" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#22D3EE">⛓️ SUI BLOCKCHAIN & ECOSYSTEM</text>
+  <rect x="46" y="428" width="155" height="28" rx="4" fill="#061A1A" stroke="#0D3D3D" stroke-width="0.8"/>
+  <text x="123" y="446" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#22D3EE">Sui Network - 13 Contracts</text>
 
-    <rect x="16" y="36" width="185" height="64" rx="6" fill="#061A1A" stroke="#0D3D3D" stroke-width="0.8"/>
-    <text x="108" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#22D3EE">⛓️ Sui Network</text>
-    <text x="108" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#1A5A5A">13 Smart Contracts</text>
-    <text x="108" y="85" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#1A5A5A">Move · Object-Centric</text>
+  <rect x="215" y="428" width="130" height="28" rx="4" fill="#0A1A0A" stroke="#0D3D1D" stroke-width="0.8"/>
+  <text x="279" y="446" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#34D399">Walrus Storage</text>
 
-    <rect x="226" y="36" width="185" height="64" rx="6" fill="#0A1A0A" stroke="#0D3D1D" stroke-width="0.8"/>
-    <text x="318" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#34D399">🌊 Walrus</text>
-    <text x="318" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">Decentralized Blob Storage</text>
-    <text x="318" y="85" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#2A5A3A">Token Images · Metadata</text>
+  <rect x="359" y="428" width="130" height="28" rx="4" fill="#1A0A05" stroke="#3D1D0A" stroke-width="0.8"/>
+  <text x="423" y="446" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#F59E0B">Cetus CLMM</text>
 
-    <rect x="436" y="36" width="185" height="64" rx="6" fill="#1A0A05" stroke="#3D1D0A" stroke-width="0.8"/>
-    <text x="528" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#F59E0B">🦀 Cetus CLMM</text>
-    <text x="528" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A1A">Post-Graduation AMM</text>
-    <text x="528" y="85" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A1A">LP Burn Verification</text>
+  <rect x="503" y="428" width="110" height="28" rx="4" fill="#0A0A1A" stroke="#1A1A3D" stroke-width="0.8"/>
+  <text x="557" y="446" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#818CF8">SuiNS</text>
 
-    <rect x="646" y="36" width="185" height="64" rx="6" fill="#0A0A1A" stroke="#1A1A3D" stroke-width="0.8"/>
-    <text x="738" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#818CF8">🔗 SuiNS</text>
-    <text x="738" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#3A3A5A">Name Resolution</text>
-    <text x="738" y="85" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#3A3A5A">creator.sui Names</text>
-
-    <rect x="856" y="36" width="185" height="64" rx="6" fill="#1A0A14" stroke="#3D1A2A" stroke-width="0.8"/>
-    <text x="948" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#F472B6">🔑 Enoki</text>
-    <text x="948" y="73" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A4A">zkLogin · Gas Sponsorship</text>
-    <text x="948" y="85" text-anchor="middle" font-family="'SF Mono',monospace" font-size="8" fill="#5A3A4A">Google Sign-In</text>
-  </g>
-
-  <rect x="0" y="556" width="1200" height="4" fill="url(#accent)" opacity="0.15"/>
+  <rect x="627" y="428" width="110" height="28" rx="4" fill="#1A0A14" stroke="#3D1A2A" stroke-width="0.8"/>
+  <text x="681" y="446" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#F472B6">Enoki</text>
 </svg>

@@ -30,18 +30,18 @@ SuiPump is the first token lifecycle operating system purpose-built for Sui's ob
 This SDK gives developers typed, production-grade access to the entire platform.
 
 <details open>
-<summary><strong>📊 Platform Comparison</strong></summary>
+<summary><strong>📋 Feature Checklist</strong></summary>
 
 <br/>
 <p align="center">
-  <img src="assets/comparison.svg" alt="Platform Comparison" width="100%" />
+  <img src="assets/comparison.svg" alt="SuiPump SDK Features" width="100%" />
 </p>
 </details>
 
 <br/>
 
 <details open>
-<summary><strong>📈 SDK Metrics</strong></summary>
+<summary><strong>📊 SDK Metrics</strong></summary>
 
 <br/>
 <p align="center">

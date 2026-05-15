@@ -1,155 +1,67 @@
-<svg width="900" height="520" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#050508"/>
-      <stop offset="100%" stop-color="#0A0A0F"/>
-    </linearGradient>
-    <linearGradient id="hdr" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10B981"/>
-      <stop offset="100%" stop-color="#34D399"/>
-    </linearGradient>
-  </defs>
+<svg width="800" height="520" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="520" fill="#0A0A0F"/>
+  <rect x="0" y="0" width="800" height="3" fill="#10B981"/>
 
-  <rect width="900" height="520" fill="url(#bg)"/>
-  <rect x="0" y="0" width="900" height="2.5" fill="url(#hdr)" opacity="0.6"/>
+  <text x="400" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#10B981">SuiPump SDK Features</text>
+  <text x="400" y="56" text-anchor="middle" font-family="monospace" font-size="10" fill="#4A5568">All features verified against source code</text>
 
-  <text x="450" y="40" text-anchor="middle"
-        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif"
-        font-size="20" font-weight="700" fill="#10B981" letter-spacing="0.5">📊 Platform Comparison</text>
-  <text x="450" y="56" text-anchor="middle"
-        font-family="'SF Mono',monospace" font-size="9" fill="#4A5568">Claims verified against source code</text>
+  <!-- Token Lifecycle Section -->
+  <text x="40" y="84" font-family="sans-serif" font-size="13" font-weight="600" fill="#10B981">Token Lifecycle</text>
+  <rect x="40" y="92" width="720" height="1" fill="#1A1A2A"/>
 
-  <!-- Table header -->
-  <g transform="translate(40, 72)">
-    <rect x="0" y="0" width="230" height="34" rx="6" fill="#0A1A10" stroke="#10B981" stroke-width="1"/>
-    <text x="115" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#10B981">Feature</text>
-    <rect x="240" y="0" width="210" height="34" rx="6" fill="#0A1A10" stroke="#10B981" stroke-width="1"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#10B981">✅ SuiPump SDK</text>
-    <rect x="460" y="0" width="195" height="34" rx="6" fill="#0A0A10" stroke="#2A2A3A" stroke-width="1"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#6B7280">pump.fun</text>
-    <rect x="665" y="0" width="195" height="34" rx="6" fill="#0A0A10" stroke="#2A2A3A" stroke-width="1"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#6B7280">movepump</text>
-  </g>
+  <text x="56" y="114" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="114" font-family="sans-serif" font-size="13" fill="#D1D5DB">2-Click Token Creation</text>
+  <text x="350" y="114" font-family="monospace" font-size="10" fill="#4A5568">OTW-based: preparePublish + confirmCreate</text>
 
-  <!-- Row 1: Token Creation -->
-  <g transform="translate(40, 114)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🔨 Token Creation</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ 2-click OTW</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">1-click (wrapped)</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">1-click (wrapped)</text>
-  </g>
+  <text x="56" y="140" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="140" font-family="sans-serif" font-size="13" fill="#D1D5DB">Bonding Curve AMM</text>
+  <text x="350" y="140" font-family="monospace" font-size="10" fill="#4A5568">Constant-product: tokens.buy / tokens.sell</text>
 
-  <!-- Row 2: Bonding Curve -->
-  <g transform="translate(40, 154)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">📈 Bonding Curve AMM</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Constant Product</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">✅ Constant Product</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">✅ Constant Product</text>
-  </g>
+  <text x="56" y="166" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="166" font-family="sans-serif" font-size="13" fill="#D1D5DB">Cetus CLMM Graduation</text>
+  <text x="350" y="166" font-family="monospace" font-size="10" fill="#4A5568">Auto pool creation + LP burn at threshold</text>
 
-  <!-- Row 3: Cetus Graduation -->
-  <g transform="translate(40, 194)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🦀 Cetus CLMM Graduation</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Auto + LP Burn</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Raydium (Solana)</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">⚠️ None</text>
-  </g>
+  <text x="56" y="192" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="192" font-family="sans-serif" font-size="13" fill="#D1D5DB">Creator Reputation Scoring</text>
+  <text x="350" y="192" font-family="monospace" font-size="10" fill="#4A5568">On-chain scoring: reputation.move</text>
 
-  <!-- Row 4: Creator Reputation -->
-  <g transform="translate(40, 234)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">⭐ Creator Reputation</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ On-Chain Scoring</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
-  </g>
+  <!-- Trading &amp; Automation Section -->
+  <text x="40" y="228" font-family="sans-serif" font-size="13" font-weight="600" fill="#10B981">Trading &amp; Automation</text>
+  <rect x="40" y="236" width="720" height="1" fill="#1A1A2A"/>
 
-  <!-- Row 5: Agent Automation -->
-  <g transform="translate(40, 274)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🤖 Agent Automation</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Batch Buy + Copy</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ None</text>
-  </g>
+  <text x="56" y="258" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="258" font-family="sans-serif" font-size="13" fill="#D1D5DB">Unsigned PTB Architecture</text>
+  <text x="350" y="258" font-family="monospace" font-size="10" fill="#4A5568">Backend builds, user signs - non-custodial</text>
 
-  <!-- Row 6: Walrus Media -->
-  <g transform="translate(40, 314)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🌊 Walrus Media Storage</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Decentralized</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Centralized (AWS)</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Centralized</text>
-  </g>
+  <text x="56" y="284" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="284" font-family="sans-serif" font-size="13" fill="#D1D5DB">Atomic Batch Buy</text>
+  <text x="350" y="284" font-family="monospace" font-size="10" fill="#4A5568">Up to 10 tokens in single PTB</text>
 
-  <!-- Row 7: Unsigned PTBs -->
-  <g transform="translate(40, 354)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🔐 Unsigned PTBs</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ Non-Custodial</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Server-Signed</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Server-Signed</text>
-  </g>
+  <text x="56" y="310" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="310" font-family="sans-serif" font-size="13" fill="#D1D5DB">Copy-Trade Automation</text>
+  <text x="350" y="310" font-family="monospace" font-size="10" fill="#4A5568">Webhook-based scaled PTB mirroring</text>
 
-  <!-- Row 8: Open Source -->
-  <g transform="translate(40, 394)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">🔓 Open Source</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#1A1A08" stroke="#3D3D0A" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#F59E0B">⚠️ SDK Only (MIT)</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Closed</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ Closed</text>
-  </g>
+  <text x="56" y="336" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="336" font-family="sans-serif" font-size="13" fill="#D1D5DB">Real-Time WebSocket Streams</text>
+  <text x="350" y="336" font-family="monospace" font-size="10" fill="#4A5568">New tokens, trades, graduations, KOTH</text>
 
-  <!-- Row 9: TypeScript SDK -->
-  <g transform="translate(40, 434)">
-    <rect x="0" y="0" width="820" height="36" rx="4" fill="#08080D"/>
-    <rect x="0" y="0" width="230" height="36" rx="4" fill="#0A0A12" stroke="#1A1A2A" stroke-width="0.5"/>
-    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">📦 TypeScript SDK</text>
-    <rect x="240" y="0" width="210" height="36" rx="4" fill="#0A1A10" stroke="#0D3D1D" stroke-width="0.5"/>
-    <text x="345" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#10B981">✅ 186 Tests · 8 Modules</text>
-    <rect x="460" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="557" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ No SDK</text>
-    <rect x="665" y="0" width="195" height="36" rx="4" fill="#0A0A10"/>
-    <text x="762" y="23" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7280">❌ No SDK</text>
-  </g>
+  <!-- Data &amp; Storage Section -->
+  <text x="40" y="372" font-family="sans-serif" font-size="13" font-weight="600" fill="#10B981">Data and Storage</text>
+  <rect x="40" y="380" width="720" height="1" fill="#1A1A2A"/>
 
-  <!-- Source verification note -->
-  <text x="450" y="500" text-anchor="middle"
-        font-family="'SF Mono',monospace" font-size="8" fill="#3A3A4A">
-    SuiPump claims verified against: bonding_curve.move · graduation.move · reputation.move · agent.ts · media.ts · tokens.ts · LICENSE (MIT)</text>
+  <text x="56" y="402" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="402" font-family="sans-serif" font-size="13" fill="#D1D5DB">Portfolio Tracking</text>
+  <text x="350" y="402" font-family="monospace" font-size="10" fill="#4A5568">Holdings, trade history, PnL overview</text>
+
+  <text x="56" y="428" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="428" font-family="sans-serif" font-size="13" fill="#D1D5DB">Walrus Media Upload</text>
+  <text x="350" y="428" font-family="monospace" font-size="10" fill="#4A5568">Decentralized blob storage for images</text>
+
+  <text x="56" y="454" font-family="monospace" font-size="11" fill="#10B981">[ok]</text>
+  <text x="88" y="454" font-family="sans-serif" font-size="13" fill="#D1D5DB">Transport-Agnostic Client</text>
+  <text x="350" y="454" font-family="monospace" font-size="10" fill="#4A5568">Works with gRPC, GraphQL, or JSON-RPC</text>
+
+  <text x="56" y="480" font-family="monospace" font-size="11" fill="#F59E0B">[~]</text>
+  <text x="88" y="480" font-family="sans-serif" font-size="13" fill="#D1D5DB">Open Source</text>
+  <text x="350" y="480" font-family="monospace" font-size="10" fill="#4A5568">SDK only - MIT License</text>
 </svg>
