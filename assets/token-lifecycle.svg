@@ -1,117 +1,255 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="'Segoe UI', -apple-system, sans-serif">
+<svg width="900" height="230" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a1a2e"/>
-      <stop offset="100%" stop-color="#16213e"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06040F"/>
+      <stop offset="100%" stop-color="#0A0818"/>
     </linearGradient>
-    <linearGradient id="step1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#6366f1"/>
+    <linearGradient id="top-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="40%" stop-color="#A78BFA"/>
+      <stop offset="70%" stop-color="#22D3EE"/>
+      <stop offset="85%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#10B981"/>
     </linearGradient>
-    <linearGradient id="step2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0891b2"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
+    <linearGradient id="progress-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4C1D95" stop-opacity="0.6"/>
+      <stop offset="25%" stop-color="#7C3AED" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#22D3EE" stop-opacity="0.6"/>
+      <stop offset="75%" stop-color="#F59E0B" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.6"/>
     </linearGradient>
-    <linearGradient id="step3" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#059669"/>
-      <stop offset="100%" stop-color="#10b981"/>
-    </linearGradient>
-    <linearGradient id="step4" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
-    </linearGradient>
-    <linearGradient id="step5" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#dc2626"/>
-      <stop offset="100%" stop-color="#ef4444"/>
-    </linearGradient>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.4"/>
-    </filter>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#64748b"/>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
   </defs>
 
-  <rect width="900" height="400" fill="url(#bg)" rx="12"/>
+  <style>
+    @keyframes reveal { 0%,100%{opacity:.7} 50%{opacity:1} }
+    .s1{animation:reveal 4s ease-in-out 0s infinite}
+    .s2{animation:reveal 4s ease-in-out .8s infinite}
+    .s3{animation:reveal 4s ease-in-out 1.6s infinite}
+    .s4{animation:reveal 4s ease-in-out 2.4s infinite}
+    .s5{animation:reveal 4s ease-in-out 3.2s infinite}
+    @keyframes flow-right { to{stroke-dashoffset:-14} }
+    .flow { stroke-dasharray:5 3; animation:flow-right 1.3s linear infinite; }
+  </style>
 
-  <text x="450" y="35" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700" letter-spacing="1">Token Lifecycle</text>
-  <line x1="150" y1="45" x2="750" y2="45" stroke="#334155" stroke-width="1"/>
+  <rect width="900" height="230" fill="url(#bg)"/>
 
-  <!-- Step 1: Create -->
-  <rect x="35" y="80" width="150" height="150" rx="12" fill="#1e1b4b" stroke="url(#step1)" stroke-width="2" filter="url(#shadow)"/>
-  <circle cx="110" cy="115" r="20" fill="url(#step1)"/>
-  <text x="110" y="120" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">1</text>
-  <text x="110" y="150" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">Create</text>
-  <text x="110" y="167" text-anchor="middle" fill="#8b5cf6" font-size="10">2-Click OTW</text>
-  <text x="110" y="182" text-anchor="middle" fill="#6d28d9" font-size="9">Publish package</text>
-  <text x="110" y="195" text-anchor="middle" fill="#6d28d9" font-size="9">Mint + Bond</text>
+  <!-- Grid -->
+  <g stroke="#12102A" stroke-width="0.5">
+    <line x1="0" y1="50" x2="900" y2="50"/>
+    <line x1="0" y1="100" x2="900" y2="100"/>
+    <line x1="0" y1="150" x2="900" y2="150"/>
+    <line x1="0" y1="200" x2="900" y2="200"/>
+    <line x1="90" y1="0" x2="90" y2="230"/>
+    <line x1="180" y1="0" x2="180" y2="230"/>
+    <line x1="270" y1="0" x2="270" y2="230"/>
+    <line x1="360" y1="0" x2="360" y2="230"/>
+    <line x1="450" y1="0" x2="450" y2="230"/>
+    <line x1="540" y1="0" x2="540" y2="230"/>
+    <line x1="630" y1="0" x2="630" y2="230"/>
+    <line x1="720" y1="0" x2="720" y2="230"/>
+    <line x1="810" y1="0" x2="810" y2="230"/>
+  </g>
 
-  <!-- Arrow -->
-  <line x1="185" y1="155" x2="215" y2="155" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Top rainbow bar -->
+  <rect x="0" y="0" width="900" height="3" fill="url(#top-bar)"/>
 
-  <!-- Step 2: Bonding Curve -->
-  <rect x="225" y="80" width="150" height="150" rx="12" fill="#0c1929" stroke="url(#step2)" stroke-width="2" filter="url(#shadow)"/>
-  <circle cx="300" cy="115" r="20" fill="url(#step2)"/>
-  <text x="300" y="120" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">2</text>
-  <text x="300" y="150" text-anchor="middle" fill="#67e8f9" font-size="14" font-weight="700">Launch</text>
-  <text x="300" y="167" text-anchor="middle" fill="#22d3ee" font-size="10">Bonding Curve</text>
-  <text x="300" y="182" text-anchor="middle" fill="#0891b2" font-size="9">Supply: 1B</text>
-  <text x="300" y="195" text-anchor="middle" fill="#0891b2" font-size="9">$480 USD Virtual Reserves</text>
+  <!-- Section label -->
+  <text x="450" y="24"
+        font-family="-apple-system,BlinkMacSystemFont,system-ui,sans-serif"
+        font-size="9" font-weight="600" text-anchor="middle" fill="#2A2448" letter-spacing="2">
+    TOKEN LIFECYCLE STAGES
+  </text>
 
-  <!-- Bonding curve visual (arc) -->
-  <path d="M240 210 Q300 170 360 210" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="3,2"/>
+  <!-- Progress bar track -->
+  <rect x="50" y="35" width="800" height="3" rx="1.5" fill="#12102A"/>
+  <rect x="50" y="35" width="800" height="3" rx="1.5" fill="url(#progress-bar)"/>
 
-  <!-- Arrow -->
-  <line x1="375" y1="155" x2="405" y2="155" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Flow arrows between stages (animated) -->
+  <line x1="196" y1="115" x2="218" y2="115" stroke="#2D2460" stroke-width="1.5"
+        marker-end="url(#arr)" class="flow"/>
+  <line x1="374" y1="115" x2="396" y2="115" stroke="#22D3EE" stroke-width="1.5"
+        marker-end="url(#arr)" class="flow"/>
+  <line x1="552" y1="115" x2="574" y2="115" stroke="#F59E0B" stroke-width="1.5"
+        marker-end="url(#arr)" class="flow"/>
+  <line x1="730" y1="115" x2="752" y2="115" stroke="#10B981" stroke-width="1.5"
+        marker-end="url(#arr)" class="flow"/>
 
-  <!-- Step 3: Trade -->
-  <rect x="415" y="80" width="150" height="150" rx="12" fill="#022c22" stroke="url(#step3)" stroke-width="2" filter="url(#shadow)"/>
-  <circle cx="490" cy="115" r="20" fill="url(#step3)"/>
-  <text x="490" y="120" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">3</text>
-  <text x="490" y="150" text-anchor="middle" fill="#a7f3d0" font-size="14" font-weight="700">Trade</text>
-  <text x="490" y="167" text-anchor="middle" fill="#34d399" font-size="10">Buy / Sell</text>
-  <text x="490" y="182" text-anchor="middle" fill="#059669" font-size="9">Price increases</text>
-  <text x="490" y="195" text-anchor="middle" fill="#059669" font-size="9">with demand</text>
+  <!-- ===== STAGE 1: Discovery ===== -->
+  <g class="s1">
+    <!-- Number dot on progress bar -->
+    <circle cx="50" cy="36.5" r="5" fill="#4C1D95" stroke="#7C3AED" stroke-width="1.5"/>
+    <text x="50" y="39.5" font-family="monospace" font-size="6" text-anchor="middle" fill="#A78BFA">1</text>
 
-  <!-- Arrow -->
-  <line x1="565" y1="155" x2="595" y2="155" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="20" y="50" width="172" height="148" rx="10"
+          fill="#0C0918" stroke="#1E1440" stroke-width="1"/>
+    <!-- Header -->
+    <rect x="20" y="50" width="172" height="34" rx="10" fill="#150E30"/>
+    <rect x="20" y="70" width="172" height="14" fill="#150E30"/>
+    <!-- Stage num -->
+    <text x="34" y="71" font-family="'SF Mono',monospace" font-size="9" fill="#3D2880">01</text>
+    <!-- Stage name -->
+    <text x="106" y="71" font-family="system-ui,sans-serif" font-size="12" font-weight="700"
+          text-anchor="middle" fill="#A78BFA">Discovery</text>
 
-  <!-- Step 4: Graduate -->
-  <rect x="605" y="80" width="150" height="150" rx="12" fill="#1c1917" stroke="url(#step4)" stroke-width="2" filter="url(#shadow)"/>
-  <circle cx="680" cy="115" r="20" fill="url(#step4)"/>
-  <text x="680" y="120" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">4</text>
-  <text x="680" y="150" text-anchor="middle" fill="#fde68a" font-size="14" font-weight="700">Graduate</text>
-  <text x="680" y="167" text-anchor="middle" fill="#f59e0b" font-size="10">$65,000 USD threshold</text>
-  <text x="680" y="182" text-anchor="middle" fill="#d97706" font-size="9">Liquidity locked</text>
-  <text x="680" y="195" text-anchor="middle" fill="#d97706" font-size="9">LP burn verified</text>
+    <!-- Icon: eye/search circle -->
+    <circle cx="106" cy="110" r="22" fill="#1A1238" stroke="#3D2880" stroke-width="1"/>
+    <circle cx="106" cy="110" r="10" fill="none" stroke="#7C3AED" stroke-width="1.5"/>
+    <circle cx="106" cy="110" r="4" fill="#A78BFA"/>
+    <line x1="113" y1="117" x2="120" y2="124" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
 
-  <!-- Arrow -->
-  <line x1="755" y1="155" x2="785" y2="155" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <!-- Methods -->
+    <text x="106" y="149" font-family="'SF Mono',monospace" font-size="8" text-anchor="middle" fill="#3D2880">
+      tokens.list()
+    </text>
+    <text x="106" y="162" font-family="'SF Mono',monospace" font-size="8" text-anchor="middle" fill="#3D2880">
+      tokens.get()
+    </text>
+    <!-- Description -->
+    <text x="106" y="181" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#2A2040">
+      Browse trending,
+    </text>
+    <text x="106" y="193" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#2A2040">
+      new &amp; near-grad tokens
+    </text>
+  </g>
 
-  <!-- Step 5: Cetus -->
-  <rect x="795" y="80" width="75" height="150" rx="12" fill="#1f1315" stroke="url(#step5)" stroke-width="2" filter="url(#shadow)"/>
-  <circle cx="832" cy="115" r="20" fill="url(#step5)"/>
-  <text x="832" y="120" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">5</text>
-  <text x="832" y="150" text-anchor="middle" fill="#fca5a5" font-size="13" font-weight="700">Cetus</text>
-  <text x="832" y="167" text-anchor="middle" fill="#f87171" font-size="9">CLMM</text>
-  <text x="832" y="182" text-anchor="middle" fill="#ef4444" font-size="9">Pool</text>
+  <!-- ===== STAGE 2: Creation ===== -->
+  <g class="s2">
+    <circle cx="225" cy="36.5" r="5" fill="#4C1D95" stroke="#7C3AED" stroke-width="1.5"/>
+    <text x="225" y="39.5" font-family="monospace" font-size="6" text-anchor="middle" fill="#A78BFA">2</text>
 
-  <!-- Bottom: Stats bar -->
-  <rect x="35" y="270" width="835" height="100" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-  <text x="450" y="295" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="600" letter-spacing="1">KEY METRICS</text>
+    <rect x="220" y="50" width="150" height="148" rx="10"
+          fill="#0C0918" stroke="#2D2060" stroke-width="1"/>
+    <rect x="220" y="50" width="150" height="34" rx="10" fill="#1A1240"/>
+    <rect x="220" y="70" width="150" height="14" fill="#1A1240"/>
+    <text x="234" y="71" font-family="'SF Mono',monospace" font-size="9" fill="#4A30A0">02</text>
+    <text x="295" y="71" font-family="system-ui,sans-serif" font-size="12" font-weight="700"
+          text-anchor="middle" fill="#C4B5FD">Creation</text>
 
-  <text x="130" y="325" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">13 Modules</text>
-  <text x="130" y="345" text-anchor="middle" fill="#64748b" font-size="10">Deployed Contracts</text>
+    <!-- Icon: plus in hex -->
+    <polygon points="295,90 309,98 309,114 295,122 281,114 281,98"
+             fill="#1E1448" stroke="#5B21B6" stroke-width="1.5"/>
+    <line x1="295" y1="100" x2="295" y2="112" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="289" y1="106" x2="301" y2="106" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
 
-  <text x="300" y="325" text-anchor="middle" fill="#22d3ee" font-size="14" font-weight="700">1B Supply</text>
-  <text x="300" y="345" text-anchor="middle" fill="#64748b" font-size="10">Per Token</text>
+    <text x="295" y="141" font-family="'SF Mono',monospace" font-size="7.5" text-anchor="middle" fill="#4A30A0">
+      .preparePublish()
+    </text>
+    <text x="295" y="154" font-family="'SF Mono',monospace" font-size="7.5" text-anchor="middle" fill="#4A30A0">
+      .confirmCreate()
+    </text>
+    <text x="295" y="173" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#2A1E50">
+      OTW publish pkg,
+    </text>
+    <text x="295" y="185" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#2A1E50">
+      create bonding curve
+    </text>
+  </g>
 
-  <text x="470" y="325" text-anchor="middle" fill="#34d399" font-size="14" font-weight="700">$65,000 USD</text>
-  <text x="470" y="345" text-anchor="middle" fill="#64748b" font-size="10">Graduation Threshold</text>
+  <!-- ===== STAGE 3: Bonding Curve ===== -->
+  <g class="s3">
+    <circle cx="450" cy="36.5" r="5" fill="#0E4A56" stroke="#22D3EE" stroke-width="1.5"/>
+    <text x="450" y="39.5" font-family="monospace" font-size="6" text-anchor="middle" fill="#22D3EE">3</text>
 
-  <text x="640" y="325" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">101 Tests</text>
-  <text x="640" y="345" text-anchor="middle" fill="#64748b" font-size="10">Move Contract Tests</text>
+    <rect x="398" y="50" width="150" height="148" rx="10"
+          fill="#090D14" stroke="#0E3A47" stroke-width="1"/>
+    <rect x="398" y="50" width="150" height="34" rx="10" fill="#0C2030"/>
+    <rect x="398" y="70" width="150" height="14" fill="#0C2030"/>
+    <text x="412" y="71" font-family="'SF Mono',monospace" font-size="9" fill="#1E5A6A">03</text>
+    <text x="473" y="71" font-family="system-ui,sans-serif" font-size="12" font-weight="700"
+          text-anchor="middle" fill="#22D3EE">Bonding</text>
 
-  <text x="790" y="325" text-anchor="middle" fill="#f87171" font-size="14" font-weight="700">95%+</text>
-  <text x="790" y="345" text-anchor="middle" fill="#64748b" font-size="10">Test Coverage</text>
+    <!-- Icon: curve chart -->
+    <circle cx="473" cy="106" r="22" fill="#0C1E28" stroke="#0E4A5A" stroke-width="1"/>
+    <path d="M456,116 Q462,98 473,104 Q484,110 490,96"
+          fill="none" stroke="#22D3EE" stroke-width="2" stroke-linecap="round"/>
+    <!-- Dot on curve -->
+    <circle cx="473" cy="104" r="2.5" fill="#22D3EE"/>
+
+    <text x="473" y="141" font-family="'SF Mono',monospace" font-size="8" text-anchor="middle" fill="#1E5A6A">
+      tokens.buy()
+    </text>
+    <text x="473" y="154" font-family="'SF Mono',monospace" font-size="8" text-anchor="middle" fill="#1E5A6A">
+      tokens.sell()
+    </text>
+    <text x="473" y="173" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#103040">
+      Constant-product AMM
+    </text>
+    <text x="473" y="185" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#103040">
+      with slippage protection
+    </text>
+  </g>
+
+  <!-- ===== STAGE 4: Graduation (golden) ===== -->
+  <g class="s4">
+    <circle cx="675" cy="36.5" r="5" fill="#451A03" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="675" y="39.5" font-family="monospace" font-size="6" text-anchor="middle" fill="#F59E0B">4</text>
+
+    <rect x="575" y="50" width="152" height="148" rx="10"
+          fill="#0A0806" stroke="#2D1A06" stroke-width="1"/>
+    <!-- Golden header -->
+    <rect x="575" y="50" width="152" height="34" rx="10" fill="#1A0E06"/>
+    <rect x="575" y="70" width="152" height="14" fill="#1A0E06"/>
+    <text x="589" y="71" font-family="'SF Mono',monospace" font-size="9" fill="#7A4010">04</text>
+    <text x="651" y="71" font-family="system-ui,sans-serif" font-size="12" font-weight="700"
+          text-anchor="middle" fill="#F59E0B">Graduation</text>
+
+    <!-- Icon: star/trophy -->
+    <circle cx="651" cy="106" r="22" fill="#160C02" stroke="#7A4010" stroke-width="1"/>
+    <polygon points="651,90 654.6,99 665,99 656.8,104.8 659.4,114 651,108.4 642.6,114 645.2,104.8 637,99 647.4,99"
+             fill="#F59E0B" opacity="0.9"/>
+
+    <text x="651" y="141" font-family="'SF Mono',monospace" font-size="7.5" text-anchor="middle" fill="#7A4010">
+      stream.onGraduated()
+    </text>
+    <text x="651" y="154" font-family="'SF Mono',monospace" font-size="7.5" text-anchor="middle" fill="#7A4010">
+      tokens.get()
+    </text>
+    <text x="651" y="173" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#4A2C08">
+      Auto Cetus CLMM pool
+    </text>
+    <text x="651" y="185" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#4A2C08">
+      at threshold
+    </text>
+  </g>
+
+  <!-- ===== STAGE 5: Post-Grad ===== -->
+  <g class="s5">
+    <circle cx="850" cy="36.5" r="5" fill="#052E16" stroke="#10B981" stroke-width="1.5"/>
+    <text x="850" y="39.5" font-family="monospace" font-size="6" text-anchor="middle" fill="#10B981">5</text>
+
+    <rect x="756" y="50" width="130" height="148" rx="10"
+          fill="#070D0A" stroke="#102814" stroke-width="1"/>
+    <rect x="756" y="50" width="130" height="34" rx="10" fill="#0B1A10"/>
+    <rect x="756" y="70" width="130" height="14" fill="#0B1A10"/>
+    <text x="770" y="71" font-family="'SF Mono',monospace" font-size="9" fill="#1A5A30">05</text>
+    <text x="821" y="71" font-family="system-ui,sans-serif" font-size="12" font-weight="700"
+          text-anchor="middle" fill="#10B981">Post-Grad</text>
+
+    <!-- Icon: checkmark circle -->
+    <circle cx="821" cy="106" r="22" fill="#0A1A10" stroke="#1A5A30" stroke-width="1"/>
+    <path d="M810,106 L818,114 L834,96"
+          fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="821" y="141" font-family="'SF Mono',monospace" font-size="7.5" text-anchor="middle" fill="#1A5A30">
+      portfolio.*()
+    </text>
+    <text x="821" y="154" font-family="'SF Mono',monospace" font-size="7.5" text-anchor="middle" fill="#1A5A30">
+      tokens.get()
+    </text>
+    <text x="821" y="173" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#0F3A1E">
+      Cetus AMM trading,
+    </text>
+    <text x="821" y="185" font-family="system-ui" font-size="8.5" text-anchor="middle" fill="#0F3A1E">
+      portfolio + analytics
+    </text>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="227" width="900" height="3" fill="url(#top-bar)" opacity="0.35"/>
 </svg>
