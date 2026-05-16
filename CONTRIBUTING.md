@@ -35,4 +35,5 @@ Conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`
 
 ## Questions
 
-Open a GitHub Discussion or reach out to `security@suipump.dev` for sensitive issues.
+Open a [GitHub Discussion](https://github.com/suipump-xyz/suipump-sdk/discussions) for questions.
+Report sensitive issues via [Security Advisories](https://github.com/suipump-xyz/suipump-sdk/security/advisories/new).

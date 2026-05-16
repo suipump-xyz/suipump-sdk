@@ -2,13 +2,11 @@
 
 ## Reporting a Vulnerability
 
-Report security vulnerabilities privately to:
+Report security vulnerabilities privately via **GitHub Security Advisories**:
 
-**security@suipump.dev**
+https://github.com/suipump-xyz/suipump-sdk/security/advisories/new
 
 Do not disclose the issue publicly until it has been addressed and a patch released.
-
-If you prefer not to use email, ProtonMail is accepted — send to the same address.
 
 We will acknowledge receipt within 48 hours and provide a timeline for resolution.
 
